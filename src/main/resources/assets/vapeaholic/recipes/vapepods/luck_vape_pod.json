@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "vapeaholic:awkward_vape_pod"
+    },
+    {
+      "item": "minecraft:red_flower",
+      "data": 8
+    }
+  ],
+  "result": {
+    "count": 1,
+    "item": "vapeaholic:luck_vape_pod"
+  }
+}

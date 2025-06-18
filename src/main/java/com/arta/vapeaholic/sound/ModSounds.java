@@ -1,17 +1,18 @@
 package com.arta.vapeaholic.sound;
 
 import com.arta.vapeaholic.Vapeaholic;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class ModSounds {
     public static final SoundEvent BREATHING = registerSound("breathing");
 
     private static SoundEvent registerSound(String name) {
-        Identifier id = Identifier.of(Vapeaholic.MOD_ID, name);
-        return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(id));
+        ResourceLocation resource = new ResourceLocation(Vapeaholic.MOD_ID, name);
+        SoundEvent event = new SoundEvent(resource).setRegistryName(name);
+        ForgeRegistries.SOUND_EVENTS.register(event);
+        return event;
     }
 
     public static void registerModSounds() {

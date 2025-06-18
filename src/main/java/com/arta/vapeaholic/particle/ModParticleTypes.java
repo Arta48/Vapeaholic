@@ -1,34 +1,38 @@
 package com.arta.vapeaholic.particle;
 
 import com.arta.vapeaholic.Vapeaholic;
-import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
-import net.minecraft.particle.SimpleParticleType;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraftforge.common.util.EnumHelper;
 
 public class ModParticleTypes {
-    public static final SimpleParticleType WATER_PARTICLE = registerParticleType("water_particle", FabricParticleTypes.simple(true));
-    public static final SimpleParticleType FIRE_RESISTANCE_PARTICLE = registerParticleType("fire_resistance_particle", FabricParticleTypes.simple(true));
-    public static final SimpleParticleType INSTANT_DAMAGE_PARTICLE = registerParticleType("instant_damage_particle", FabricParticleTypes.simple(true));
-    public static final SimpleParticleType INSTANT_HEALTH_PARTICLE = registerParticleType("instant_health_particle", FabricParticleTypes.simple(true));
-    public static final SimpleParticleType JUMP_BOOST_PARTICLE = registerParticleType("jump_boost_particle", FabricParticleTypes.simple(true));
-    public static final SimpleParticleType LUCK_PARTICLE = registerParticleType("luck_particle", FabricParticleTypes.simple(true));
-    public static final SimpleParticleType NIGHT_VISION_PARTICLE = registerParticleType("night_vision_particle", FabricParticleTypes.simple(true));
-    public static final SimpleParticleType POISON_PARTICLE = registerParticleType("poison_particle", FabricParticleTypes.simple(true));
-    public static final SimpleParticleType REGENERATION_PARTICLE = registerParticleType("regeneration_particle", FabricParticleTypes.simple(true));
-    public static final SimpleParticleType SLOW_FALLING_PARTICLE = registerParticleType("slow_falling_particle", FabricParticleTypes.simple(true));
-    public static final SimpleParticleType SLOWNESS_PARTICLE = registerParticleType("slowness_particle", FabricParticleTypes.simple(true));
-    public static final SimpleParticleType STRENGTH_PARTICLE = registerParticleType("strength_particle", FabricParticleTypes.simple(true));
-    public static final SimpleParticleType SWIFTNESS_PARTICLE = registerParticleType("swiftness_particle", FabricParticleTypes.simple(true));
-    public static final SimpleParticleType TURTLE_MASTER_PARTICLE = registerParticleType("turtle_master_particle", FabricParticleTypes.simple(true));
-    public static final SimpleParticleType WATER_BREATHING_PARTICLE = registerParticleType("water_breathing_particle", FabricParticleTypes.simple(true));
-    public static final SimpleParticleType WEAKNESS_PARTICLE = registerParticleType("weakness_particle", FabricParticleTypes.simple(true));
-    public static final SimpleParticleType WITHER_PARTICLE = registerParticleType("wither_particle", FabricParticleTypes.simple(true));
+    static int id = EnumParticleTypes.values().length;
 
+    public static final EnumParticleTypes WATER_PARTICLE = registerParticleType("water_particle", id++, false, 0);
+    public static final EnumParticleTypes FIRE_RESISTANCE_PARTICLE = registerParticleType("fire_resistance_particle", id++, false, 0);
+    public static final EnumParticleTypes INSTANT_DAMAGE_PARTICLE = registerParticleType("instant_damage_particle", id++, false, 0);
+    public static final EnumParticleTypes INSTANT_HEALTH_PARTICLE = registerParticleType("instant_health_particle", id++, false, 0);
+    public static final EnumParticleTypes JUMP_BOOST_PARTICLE = registerParticleType("jump_boost_particle", id++, false, 0);
+    public static final EnumParticleTypes LUCK_PARTICLE = registerParticleType("luck_particle", id++, false, 0);
+    public static final EnumParticleTypes NIGHT_VISION_PARTICLE = registerParticleType("night_vision_particle", id++, false, 0);
+    public static final EnumParticleTypes POISON_PARTICLE = registerParticleType("poison_particle", id++, false, 0);
+    public static final EnumParticleTypes REGENERATION_PARTICLE = registerParticleType("regeneration_particle", id++, false, 0);
+    public static final EnumParticleTypes SLOWNESS_PARTICLE = registerParticleType("slowness_particle", id++, false, 0);
+    public static final EnumParticleTypes STRENGTH_PARTICLE = registerParticleType("strength_particle", id++, false, 0);
+    public static final EnumParticleTypes SWIFTNESS_PARTICLE = registerParticleType("swiftness_particle", id++, false, 0);
+    public static final EnumParticleTypes WATER_BREATHING_PARTICLE = registerParticleType("water_breathing_particle", id++, false, 0);
+    public static final EnumParticleTypes WEAKNESS_PARTICLE = registerParticleType("weakness_particle", id++, false, 0);
+    public static final EnumParticleTypes WITHER_PARTICLE = registerParticleType("wither_particle", id++, false, 0);
 
-    private static SimpleParticleType registerParticleType(String name, SimpleParticleType particleType) {
-        return Registry.register(Registries.PARTICLE_TYPE, Identifier.of(Vapeaholic.MOD_ID, name), particleType);
+    private static EnumParticleTypes registerParticleType(String name, int id, boolean ignoreRange, int argumentCount) {
+        for (EnumParticleTypes existingParticle : EnumParticleTypes.values()) {
+            if (existingParticle.getParticleID() == id) {
+                throw new RuntimeException("Attempted to register a particle with the same integer ID as " + existingParticle.getParticleName() + " (" + existingParticle + ").");
+            }
+        }
+
+        EnumParticleTypes particle = EnumHelper.addEnum(EnumParticleTypes.class, name, new Class[] {String.class, int.class, boolean.class, int.class}, name, id, ignoreRange, argumentCount);
+
+        return particle;
     }
 
     public static void registerModParticleTypes() {

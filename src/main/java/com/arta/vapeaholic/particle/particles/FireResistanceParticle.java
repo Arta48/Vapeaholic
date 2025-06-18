@@ -1,54 +1,46 @@
 package com.arta.vapeaholic.particle.particles;
 
-import com.arta.vapeaholic.variable.ModClientVariables;
 import com.arta.vapeaholic.variable.ModVariables;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.particle.*;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particle.SimpleParticleType;
+import net.minecraft.client.particle.IParticleFactory;
+import net.minecraft.client.particle.Particle;
+import net.minecraft.client.particle.ParticleSimpleAnimated;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.entity.Entity;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Environment(EnvType.CLIENT)
-public class FireResistanceParticle extends AnimatedParticle {
-    public static FireResistanceProvider provider(SpriteProvider spriteProvider) {
-        return new FireResistanceProvider(spriteProvider);
-    }
+@SideOnly(Side.CLIENT)
+public class FireResistanceParticle extends ParticleSimpleAnimated {
 
-    public static class FireResistanceProvider implements ParticleFactory<SimpleParticleType> {
-        private final SpriteProvider spriteProvider;
-
-        public FireResistanceProvider(SpriteProvider spriteProvider) {
-            this.spriteProvider = spriteProvider;
-        }
-
-        public Particle createParticle(SimpleParticleType simpleParticleType, ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
-            return new FireResistanceParticle(clientWorld, x, y, z, velocityX, velocityY, velocityZ, this.spriteProvider);
+    @SideOnly(Side.CLIENT)
+    public static class Factory implements IParticleFactory {
+        public Particle createParticle(int particleID, World world, double x, double y, double z, double motionX, double motionY, double motionZ, int... params) {
+            return new FireResistanceParticle(world, x, y, z, motionX, motionY, motionZ);
         }
     }
 
-    public FireResistanceParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteProvider spriteProvider) {
-        super(world, x, y, z, spriteProvider, 0f);
-        this.velocityX = velocityX * ModVariables.ParticleSpeed;
-        this.velocityY = velocityY * ModVariables.ParticleSpeed;
-        this.velocityZ = velocityZ * ModVariables.ParticleSpeed;
-        this.scale = ModVariables.ParticleScale;
-        this.setBoundingBoxSpacing(ModVariables.ParticleBoundingBoxSpacing, ModVariables.ParticleBoundingBoxSpacing);
-        this.maxAge = ModVariables.ParticleMaxAge;
-        this.gravityStrength = ModVariables.ParticleGravityStrength;
-        this.collidesWithWorld = ModVariables.CollideWithWorld;
-        this.setSpriteForAge(spriteProvider);
+    public FireResistanceParticle(World world, double x, double y, double z, double motionX, double motionY, double motionZ) {
+        super(world, x, y, z, 0, 8, ModVariables.YAccel);
+        this.motionX = motionX * ModVariables.ParticleMotion;
+        this.motionY = motionY * ModVariables.ParticleMotion;
+        this.motionZ = motionZ * ModVariables.ParticleMotion;
+        this.particleScale = ModVariables.ParticleScale;
+        this.setSize(ModVariables.ParticleSize, ModVariables.ParticleSize);
+        this.particleMaxAge = ModVariables.ParticleMaxAge;
+        this.canCollide = ModVariables.CanCollide;
+        this.particleRed = 255 / 255f;
+        this.particleGreen = 153 / 255f;
+        this.particleBlue = 0 / 255f;
+//        this.particleTexture = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(new ResourceLocation(Vapeaholic.MOD_ID, "particle/fire_resistance_particle_1").toString());
     }
+
+//    public int getFXLayer() {
+//        return 1;
+//    }
 
     @Override
-    public ParticleTextureSheet getType() {
-        return ModClientVariables.ParticleSheet;
-    }
-
-    @Override
-    public void tick() {
-        super.tick();
-        if (!this.dead) {
-            this.setSprite(this.spriteProvider.getSprite((this.age / 15) % 7 + 1, (this.maxAge / 15) % 7 + 1));
-        }
+    public void renderParticle(BufferBuilder buffer, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ) {
+        super.renderParticle(buffer, entityIn, partialTicks, rotationX, rotationZ, rotationYZ, rotationXY, rotationXZ);
     }
 }

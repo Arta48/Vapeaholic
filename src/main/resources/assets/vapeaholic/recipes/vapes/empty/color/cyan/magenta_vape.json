@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "vapeaholic:magenta_vape"
+    },
+    {
+      "item": "minecraft:dye",
+      "data": 6
+    }
+  ],
+  "result": {
+    "count": 1,
+    "item": "vapeaholic:cyan_vape"
+  }
+}

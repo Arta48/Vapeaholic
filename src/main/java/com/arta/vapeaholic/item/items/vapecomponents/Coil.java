@@ -1,14 +1,17 @@
 package com.arta.vapeaholic.item.items.vapecomponents;
 
 import com.arta.vapeaholic.Vapeaholic;
+import com.arta.vapeaholic.item.ModItemGroups;
 import net.minecraft.item.Item;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
 
 public class Coil extends Item {
 
-    public Coil() {
-        super(new Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Vapeaholic.MOD_ID,"coil"))));
-    }
+	public Coil(String name) {
+		super();
+
+		this.setRegistryName(name);
+		this.setTranslationKey(Vapeaholic.MOD_ID + "." + name);
+		this.setCreativeTab(ModItemGroups.VAPE_COMPONENTS_TAB);
+	}
 }
+

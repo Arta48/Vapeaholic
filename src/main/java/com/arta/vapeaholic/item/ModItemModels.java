@@ -1,0 +1,337 @@
+package com.arta.vapeaholic.item;
+
+import com.arta.vapeaholic.Vapeaholic;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+@SideOnly(Side.CLIENT)
+public class ModItemModels {
+
+    public static void registerItemModel(Item item, String ModelName) {
+        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(new ResourceLocation(Vapeaholic.MOD_ID, ModelName), "inventory"));
+    }
+
+    public static void registerModItemModels() {
+        Vapeaholic.LOGGER.info("Registering Mod Item Models for " + Vapeaholic.MOD_ID);
+
+        registerItemModel(ModItems.BATTERY, "battery");
+        registerItemModel(ModItems.COIL, "coil");
+        registerItemModel(ModItems.MOUTHPIECE, "mouthpiece");
+
+        registerItemModel(ModItems.VAPE_POD, "vape_pod");
+        registerItemModel(ModItems.WATER_VAPE_POD, "water_vape_pod");
+        registerItemModel(ModItems.MUNDANE_VAPE_POD, "mundane_vape_pod");
+        registerItemModel(ModItems.THICK_VAPE_POD, "thick_vape_pod");
+        registerItemModel(ModItems.AWKWARD_VAPE_POD, "awkward_vape_pod");
+        registerItemModel(ModItems.FIRE_RESISTANCE_VAPE_POD, "fire_resistance_vape_pod");
+        registerItemModel(ModItems.INSTANT_DAMAGE_VAPE_POD, "instant_damage_vape_pod");
+        registerItemModel(ModItems.INSTANT_HEALTH_VAPE_POD, "instant_health_vape_pod");
+        registerItemModel(ModItems.INVISIBILITY_VAPE_POD, "invisibility_vape_pod");
+        registerItemModel(ModItems.JUMP_BOOST_VAPE_POD, "jump_boost_vape_pod");
+        registerItemModel(ModItems.LUCK_VAPE_POD, "luck_vape_pod");
+        registerItemModel(ModItems.NIGHT_VISION_VAPE_POD, "night_vision_vape_pod");
+        registerItemModel(ModItems.POISON_VAPE_POD, "poison_vape_pod");
+        registerItemModel(ModItems.REGENERATION_VAPE_POD, "regeneration_vape_pod");
+        registerItemModel(ModItems.SLOWNESS_VAPE_POD, "slowness_vape_pod");
+        registerItemModel(ModItems.STRENGTH_VAPE_POD, "strength_vape_pod");
+        registerItemModel(ModItems.SWIFTNESS_VAPE_POD, "swiftness_vape_pod");
+        registerItemModel(ModItems.WATER_BREATHING_VAPE_POD, "water_breathing_vape_pod");
+        registerItemModel(ModItems.WEAKNESS_VAPE_POD, "weakness_vape_pod");
+        registerItemModel(ModItems.WITHER_VAPE_POD, "wither_vape_pod");
+
+        registerItemModel(ModItems.RED_VAPE, "red_vape");
+        registerItemModel(ModItems.ORANGE_VAPE, "orange_vape");
+        registerItemModel(ModItems.YELLOW_VAPE, "yellow_vape");
+        registerItemModel(ModItems.LIME_VAPE, "lime_vape");
+        registerItemModel(ModItems.GREEN_VAPE, "green_vape");
+        registerItemModel(ModItems.CYAN_VAPE, "cyan_vape");
+        registerItemModel(ModItems.LIGHT_BLUE_VAPE, "light_blue_vape");
+        registerItemModel(ModItems.BLUE_VAPE, "blue_vape");
+        registerItemModel(ModItems.PURPLE_VAPE, "purple_vape");
+        registerItemModel(ModItems.MAGENTA_VAPE, "magenta_vape");
+        registerItemModel(ModItems.PINK_VAPE, "pink_vape");
+        registerItemModel(ModItems.BROWN_VAPE, "brown_vape");
+        registerItemModel(ModItems.WHITE_VAPE, "white_vape");
+        registerItemModel(ModItems.LIGHT_GRAY_VAPE, "light_gray_vape");
+        registerItemModel(ModItems.GRAY_VAPE, "gray_vape");
+        registerItemModel(ModItems.BLACK_VAPE, "black_vape");
+
+
+        registerItemModel(ModItems.WATER_RED_VAPE, "red_vape");
+        registerItemModel(ModItems.WATER_ORANGE_VAPE, "orange_vape");
+        registerItemModel(ModItems.WATER_YELLOW_VAPE, "yellow_vape");
+        registerItemModel(ModItems.WATER_LIME_VAPE, "lime_vape");
+        registerItemModel(ModItems.WATER_GREEN_VAPE, "green_vape");
+        registerItemModel(ModItems.WATER_CYAN_VAPE, "cyan_vape");
+        registerItemModel(ModItems.WATER_LIGHT_BLUE_VAPE, "light_blue_vape");
+        registerItemModel(ModItems.WATER_BLUE_VAPE, "blue_vape");
+        registerItemModel(ModItems.WATER_PURPLE_VAPE, "purple_vape");
+        registerItemModel(ModItems.WATER_MAGENTA_VAPE, "magenta_vape");
+        registerItemModel(ModItems.WATER_PINK_VAPE, "pink_vape");
+        registerItemModel(ModItems.WATER_BROWN_VAPE, "brown_vape");
+        registerItemModel(ModItems.WATER_WHITE_VAPE, "white_vape");
+        registerItemModel(ModItems.WATER_LIGHT_GRAY_VAPE, "light_gray_vape");
+        registerItemModel(ModItems.WATER_GRAY_VAPE, "gray_vape");
+        registerItemModel(ModItems.WATER_BLACK_VAPE, "black_vape");
+
+        registerItemModel(ModItems.FIRE_RESISTANCE_RED_VAPE, "red_vape");
+        registerItemModel(ModItems.FIRE_RESISTANCE_ORANGE_VAPE, "orange_vape");
+        registerItemModel(ModItems.FIRE_RESISTANCE_YELLOW_VAPE, "yellow_vape");
+        registerItemModel(ModItems.FIRE_RESISTANCE_LIME_VAPE, "lime_vape");
+        registerItemModel(ModItems.FIRE_RESISTANCE_GREEN_VAPE, "green_vape");
+        registerItemModel(ModItems.FIRE_RESISTANCE_CYAN_VAPE, "cyan_vape");
+        registerItemModel(ModItems.FIRE_RESISTANCE_LIGHT_BLUE_VAPE, "light_blue_vape");
+        registerItemModel(ModItems.FIRE_RESISTANCE_BLUE_VAPE, "blue_vape");
+        registerItemModel(ModItems.FIRE_RESISTANCE_PURPLE_VAPE, "purple_vape");
+        registerItemModel(ModItems.FIRE_RESISTANCE_MAGENTA_VAPE, "magenta_vape");
+        registerItemModel(ModItems.FIRE_RESISTANCE_PINK_VAPE, "pink_vape");
+        registerItemModel(ModItems.FIRE_RESISTANCE_BROWN_VAPE, "brown_vape");
+        registerItemModel(ModItems.FIRE_RESISTANCE_WHITE_VAPE, "white_vape");
+        registerItemModel(ModItems.FIRE_RESISTANCE_LIGHT_GRAY_VAPE, "light_gray_vape");
+        registerItemModel(ModItems.FIRE_RESISTANCE_GRAY_VAPE, "gray_vape");
+        registerItemModel(ModItems.FIRE_RESISTANCE_BLACK_VAPE, "black_vape");
+
+        registerItemModel(ModItems.INSTANT_DAMAGE_RED_VAPE, "red_vape");
+        registerItemModel(ModItems.INSTANT_DAMAGE_ORANGE_VAPE, "orange_vape");
+        registerItemModel(ModItems.INSTANT_DAMAGE_YELLOW_VAPE, "yellow_vape");
+        registerItemModel(ModItems.INSTANT_DAMAGE_LIME_VAPE, "lime_vape");
+        registerItemModel(ModItems.INSTANT_DAMAGE_GREEN_VAPE, "green_vape");
+        registerItemModel(ModItems.INSTANT_DAMAGE_CYAN_VAPE, "cyan_vape");
+        registerItemModel(ModItems.INSTANT_DAMAGE_LIGHT_BLUE_VAPE, "light_blue_vape");
+        registerItemModel(ModItems.INSTANT_DAMAGE_BLUE_VAPE, "blue_vape");
+        registerItemModel(ModItems.INSTANT_DAMAGE_PURPLE_VAPE, "purple_vape");
+        registerItemModel(ModItems.INSTANT_DAMAGE_MAGENTA_VAPE, "magenta_vape");
+        registerItemModel(ModItems.INSTANT_DAMAGE_PINK_VAPE, "pink_vape");
+        registerItemModel(ModItems.INSTANT_DAMAGE_BROWN_VAPE, "brown_vape");
+        registerItemModel(ModItems.INSTANT_DAMAGE_WHITE_VAPE, "white_vape");
+        registerItemModel(ModItems.INSTANT_DAMAGE_LIGHT_GRAY_VAPE, "light_gray_vape");
+        registerItemModel(ModItems.INSTANT_DAMAGE_GRAY_VAPE, "gray_vape");
+        registerItemModel(ModItems.INSTANT_DAMAGE_BLACK_VAPE, "black_vape");
+
+        registerItemModel(ModItems.INSTANT_HEALTH_RED_VAPE, "red_vape");
+        registerItemModel(ModItems.INSTANT_HEALTH_ORANGE_VAPE, "orange_vape");
+        registerItemModel(ModItems.INSTANT_HEALTH_YELLOW_VAPE, "yellow_vape");
+        registerItemModel(ModItems.INSTANT_HEALTH_LIME_VAPE, "lime_vape");
+        registerItemModel(ModItems.INSTANT_HEALTH_GREEN_VAPE, "green_vape");
+        registerItemModel(ModItems.INSTANT_HEALTH_CYAN_VAPE, "cyan_vape");
+        registerItemModel(ModItems.INSTANT_HEALTH_LIGHT_BLUE_VAPE, "light_blue_vape");
+        registerItemModel(ModItems.INSTANT_HEALTH_BLUE_VAPE, "blue_vape");
+        registerItemModel(ModItems.INSTANT_HEALTH_PURPLE_VAPE, "purple_vape");
+        registerItemModel(ModItems.INSTANT_HEALTH_MAGENTA_VAPE, "magenta_vape");
+        registerItemModel(ModItems.INSTANT_HEALTH_PINK_VAPE, "pink_vape");
+        registerItemModel(ModItems.INSTANT_HEALTH_BROWN_VAPE, "brown_vape");
+        registerItemModel(ModItems.INSTANT_HEALTH_WHITE_VAPE, "white_vape");
+        registerItemModel(ModItems.INSTANT_HEALTH_LIGHT_GRAY_VAPE, "light_gray_vape");
+        registerItemModel(ModItems.INSTANT_HEALTH_GRAY_VAPE, "gray_vape");
+        registerItemModel(ModItems.INSTANT_HEALTH_BLACK_VAPE, "black_vape");
+
+        registerItemModel(ModItems.INVISIBILITY_RED_VAPE, "red_vape");
+        registerItemModel(ModItems.INVISIBILITY_ORANGE_VAPE, "orange_vape");
+        registerItemModel(ModItems.INVISIBILITY_YELLOW_VAPE, "yellow_vape");
+        registerItemModel(ModItems.INVISIBILITY_LIME_VAPE, "lime_vape");
+        registerItemModel(ModItems.INVISIBILITY_GREEN_VAPE, "green_vape");
+        registerItemModel(ModItems.INVISIBILITY_CYAN_VAPE, "cyan_vape");
+        registerItemModel(ModItems.INVISIBILITY_LIGHT_BLUE_VAPE, "light_blue_vape");
+        registerItemModel(ModItems.INVISIBILITY_BLUE_VAPE, "blue_vape");
+        registerItemModel(ModItems.INVISIBILITY_PURPLE_VAPE, "purple_vape");
+        registerItemModel(ModItems.INVISIBILITY_MAGENTA_VAPE, "magenta_vape");
+        registerItemModel(ModItems.INVISIBILITY_PINK_VAPE, "pink_vape");
+        registerItemModel(ModItems.INVISIBILITY_BROWN_VAPE, "brown_vape");
+        registerItemModel(ModItems.INVISIBILITY_WHITE_VAPE, "white_vape");
+        registerItemModel(ModItems.INVISIBILITY_LIGHT_GRAY_VAPE, "light_gray_vape");
+        registerItemModel(ModItems.INVISIBILITY_GRAY_VAPE, "gray_vape");
+        registerItemModel(ModItems.INVISIBILITY_BLACK_VAPE, "black_vape");
+
+        registerItemModel(ModItems.JUMP_BOOST_RED_VAPE, "red_vape");
+        registerItemModel(ModItems.JUMP_BOOST_ORANGE_VAPE, "orange_vape");
+        registerItemModel(ModItems.JUMP_BOOST_YELLOW_VAPE, "yellow_vape");
+        registerItemModel(ModItems.JUMP_BOOST_LIME_VAPE, "lime_vape");
+        registerItemModel(ModItems.JUMP_BOOST_GREEN_VAPE, "green_vape");
+        registerItemModel(ModItems.JUMP_BOOST_CYAN_VAPE, "cyan_vape");
+        registerItemModel(ModItems.JUMP_BOOST_LIGHT_BLUE_VAPE, "light_blue_vape");
+        registerItemModel(ModItems.JUMP_BOOST_BLUE_VAPE, "blue_vape");
+        registerItemModel(ModItems.JUMP_BOOST_PURPLE_VAPE, "purple_vape");
+        registerItemModel(ModItems.JUMP_BOOST_MAGENTA_VAPE, "magenta_vape");
+        registerItemModel(ModItems.JUMP_BOOST_PINK_VAPE, "pink_vape");
+        registerItemModel(ModItems.JUMP_BOOST_BROWN_VAPE, "brown_vape");
+        registerItemModel(ModItems.JUMP_BOOST_WHITE_VAPE, "white_vape");
+        registerItemModel(ModItems.JUMP_BOOST_LIGHT_GRAY_VAPE, "light_gray_vape");
+        registerItemModel(ModItems.JUMP_BOOST_GRAY_VAPE, "gray_vape");
+        registerItemModel(ModItems.JUMP_BOOST_BLACK_VAPE, "black_vape");
+
+        registerItemModel(ModItems.LUCK_RED_VAPE, "red_vape");
+        registerItemModel(ModItems.LUCK_ORANGE_VAPE, "orange_vape");
+        registerItemModel(ModItems.LUCK_YELLOW_VAPE, "yellow_vape");
+        registerItemModel(ModItems.LUCK_LIME_VAPE, "lime_vape");
+        registerItemModel(ModItems.LUCK_GREEN_VAPE, "green_vape");
+        registerItemModel(ModItems.LUCK_CYAN_VAPE, "cyan_vape");
+        registerItemModel(ModItems.LUCK_LIGHT_BLUE_VAPE, "light_blue_vape");
+        registerItemModel(ModItems.LUCK_BLUE_VAPE, "blue_vape");
+        registerItemModel(ModItems.LUCK_PURPLE_VAPE, "purple_vape");
+        registerItemModel(ModItems.LUCK_MAGENTA_VAPE, "magenta_vape");
+        registerItemModel(ModItems.LUCK_PINK_VAPE, "pink_vape");
+        registerItemModel(ModItems.LUCK_BROWN_VAPE, "brown_vape");
+        registerItemModel(ModItems.LUCK_WHITE_VAPE, "white_vape");
+        registerItemModel(ModItems.LUCK_LIGHT_GRAY_VAPE, "light_gray_vape");
+        registerItemModel(ModItems.LUCK_GRAY_VAPE, "gray_vape");
+        registerItemModel(ModItems.LUCK_BLACK_VAPE, "black_vape");
+
+        registerItemModel(ModItems.NIGHT_VISION_RED_VAPE, "red_vape");
+        registerItemModel(ModItems.NIGHT_VISION_ORANGE_VAPE, "orange_vape");
+        registerItemModel(ModItems.NIGHT_VISION_YELLOW_VAPE, "yellow_vape");
+        registerItemModel(ModItems.NIGHT_VISION_LIME_VAPE, "lime_vape");
+        registerItemModel(ModItems.NIGHT_VISION_GREEN_VAPE, "green_vape");
+        registerItemModel(ModItems.NIGHT_VISION_CYAN_VAPE, "cyan_vape");
+        registerItemModel(ModItems.NIGHT_VISION_LIGHT_BLUE_VAPE, "light_blue_vape");
+        registerItemModel(ModItems.NIGHT_VISION_BLUE_VAPE, "blue_vape");
+        registerItemModel(ModItems.NIGHT_VISION_PURPLE_VAPE, "purple_vape");
+        registerItemModel(ModItems.NIGHT_VISION_MAGENTA_VAPE, "magenta_vape");
+        registerItemModel(ModItems.NIGHT_VISION_PINK_VAPE, "pink_vape");
+        registerItemModel(ModItems.NIGHT_VISION_BROWN_VAPE, "brown_vape");
+        registerItemModel(ModItems.NIGHT_VISION_WHITE_VAPE, "white_vape");
+        registerItemModel(ModItems.NIGHT_VISION_LIGHT_GRAY_VAPE, "light_gray_vape");
+        registerItemModel(ModItems.NIGHT_VISION_GRAY_VAPE, "gray_vape");
+        registerItemModel(ModItems.NIGHT_VISION_BLACK_VAPE, "black_vape");
+
+        registerItemModel(ModItems.POISON_RED_VAPE, "red_vape");
+        registerItemModel(ModItems.POISON_ORANGE_VAPE, "orange_vape");
+        registerItemModel(ModItems.POISON_YELLOW_VAPE, "yellow_vape");
+        registerItemModel(ModItems.POISON_LIME_VAPE, "lime_vape");
+        registerItemModel(ModItems.POISON_GREEN_VAPE, "green_vape");
+        registerItemModel(ModItems.POISON_CYAN_VAPE, "cyan_vape");
+        registerItemModel(ModItems.POISON_LIGHT_BLUE_VAPE, "light_blue_vape");
+        registerItemModel(ModItems.POISON_BLUE_VAPE, "blue_vape");
+        registerItemModel(ModItems.POISON_PURPLE_VAPE, "purple_vape");
+        registerItemModel(ModItems.POISON_MAGENTA_VAPE, "magenta_vape");
+        registerItemModel(ModItems.POISON_PINK_VAPE, "pink_vape");
+        registerItemModel(ModItems.POISON_BROWN_VAPE, "brown_vape");
+        registerItemModel(ModItems.POISON_WHITE_VAPE, "white_vape");
+        registerItemModel(ModItems.POISON_LIGHT_GRAY_VAPE, "light_gray_vape");
+        registerItemModel(ModItems.POISON_GRAY_VAPE, "gray_vape");
+        registerItemModel(ModItems.POISON_BLACK_VAPE, "black_vape");
+
+        registerItemModel(ModItems.REGENERATION_RED_VAPE, "red_vape");
+        registerItemModel(ModItems.REGENERATION_ORANGE_VAPE, "orange_vape");
+        registerItemModel(ModItems.REGENERATION_YELLOW_VAPE, "yellow_vape");
+        registerItemModel(ModItems.REGENERATION_LIME_VAPE, "lime_vape");
+        registerItemModel(ModItems.REGENERATION_GREEN_VAPE, "green_vape");
+        registerItemModel(ModItems.REGENERATION_CYAN_VAPE, "cyan_vape");
+        registerItemModel(ModItems.REGENERATION_LIGHT_BLUE_VAPE, "light_blue_vape");
+        registerItemModel(ModItems.REGENERATION_BLUE_VAPE, "blue_vape");
+        registerItemModel(ModItems.REGENERATION_PURPLE_VAPE, "purple_vape");
+        registerItemModel(ModItems.REGENERATION_MAGENTA_VAPE, "magenta_vape");
+        registerItemModel(ModItems.REGENERATION_PINK_VAPE, "pink_vape");
+        registerItemModel(ModItems.REGENERATION_BROWN_VAPE, "brown_vape");
+        registerItemModel(ModItems.REGENERATION_WHITE_VAPE, "white_vape");
+        registerItemModel(ModItems.REGENERATION_LIGHT_GRAY_VAPE, "light_gray_vape");
+        registerItemModel(ModItems.REGENERATION_GRAY_VAPE, "gray_vape");
+        registerItemModel(ModItems.REGENERATION_BLACK_VAPE, "black_vape");
+
+        registerItemModel(ModItems.SLOWNESS_RED_VAPE, "red_vape");
+        registerItemModel(ModItems.SLOWNESS_ORANGE_VAPE, "orange_vape");
+        registerItemModel(ModItems.SLOWNESS_YELLOW_VAPE, "yellow_vape");
+        registerItemModel(ModItems.SLOWNESS_LIME_VAPE, "lime_vape");
+        registerItemModel(ModItems.SLOWNESS_GREEN_VAPE, "green_vape");
+        registerItemModel(ModItems.SLOWNESS_CYAN_VAPE, "cyan_vape");
+        registerItemModel(ModItems.SLOWNESS_LIGHT_BLUE_VAPE, "light_blue_vape");
+        registerItemModel(ModItems.SLOWNESS_BLUE_VAPE, "blue_vape");
+        registerItemModel(ModItems.SLOWNESS_PURPLE_VAPE, "purple_vape");
+        registerItemModel(ModItems.SLOWNESS_MAGENTA_VAPE, "magenta_vape");
+        registerItemModel(ModItems.SLOWNESS_PINK_VAPE, "pink_vape");
+        registerItemModel(ModItems.SLOWNESS_BROWN_VAPE, "brown_vape");
+        registerItemModel(ModItems.SLOWNESS_WHITE_VAPE, "white_vape");
+        registerItemModel(ModItems.SLOWNESS_LIGHT_GRAY_VAPE, "light_gray_vape");
+        registerItemModel(ModItems.SLOWNESS_GRAY_VAPE, "gray_vape");
+        registerItemModel(ModItems.SLOWNESS_BLACK_VAPE, "black_vape");
+
+        registerItemModel(ModItems.STRENGTH_RED_VAPE, "red_vape");
+        registerItemModel(ModItems.STRENGTH_ORANGE_VAPE, "orange_vape");
+        registerItemModel(ModItems.STRENGTH_YELLOW_VAPE, "yellow_vape");
+        registerItemModel(ModItems.STRENGTH_LIME_VAPE, "lime_vape");
+        registerItemModel(ModItems.STRENGTH_GREEN_VAPE, "green_vape");
+        registerItemModel(ModItems.STRENGTH_CYAN_VAPE, "cyan_vape");
+        registerItemModel(ModItems.STRENGTH_LIGHT_BLUE_VAPE, "light_blue_vape");
+        registerItemModel(ModItems.STRENGTH_BLUE_VAPE, "blue_vape");
+        registerItemModel(ModItems.STRENGTH_PURPLE_VAPE, "purple_vape");
+        registerItemModel(ModItems.STRENGTH_MAGENTA_VAPE, "magenta_vape");
+        registerItemModel(ModItems.STRENGTH_PINK_VAPE, "pink_vape");
+        registerItemModel(ModItems.STRENGTH_BROWN_VAPE, "brown_vape");
+        registerItemModel(ModItems.STRENGTH_WHITE_VAPE, "white_vape");
+        registerItemModel(ModItems.STRENGTH_LIGHT_GRAY_VAPE, "light_gray_vape");
+        registerItemModel(ModItems.STRENGTH_GRAY_VAPE, "gray_vape");
+        registerItemModel(ModItems.STRENGTH_BLACK_VAPE, "black_vape");
+
+        registerItemModel(ModItems.SWIFTNESS_RED_VAPE, "red_vape");
+        registerItemModel(ModItems.SWIFTNESS_ORANGE_VAPE, "orange_vape");
+        registerItemModel(ModItems.SWIFTNESS_YELLOW_VAPE, "yellow_vape");
+        registerItemModel(ModItems.SWIFTNESS_LIME_VAPE, "lime_vape");
+        registerItemModel(ModItems.SWIFTNESS_GREEN_VAPE, "green_vape");
+        registerItemModel(ModItems.SWIFTNESS_CYAN_VAPE, "cyan_vape");
+        registerItemModel(ModItems.SWIFTNESS_LIGHT_BLUE_VAPE, "light_blue_vape");
+        registerItemModel(ModItems.SWIFTNESS_BLUE_VAPE, "blue_vape");
+        registerItemModel(ModItems.SWIFTNESS_PURPLE_VAPE, "purple_vape");
+        registerItemModel(ModItems.SWIFTNESS_MAGENTA_VAPE, "magenta_vape");
+        registerItemModel(ModItems.SWIFTNESS_PINK_VAPE, "pink_vape");
+        registerItemModel(ModItems.SWIFTNESS_BROWN_VAPE, "brown_vape");
+        registerItemModel(ModItems.SWIFTNESS_WHITE_VAPE, "white_vape");
+        registerItemModel(ModItems.SWIFTNESS_LIGHT_GRAY_VAPE, "light_gray_vape");
+        registerItemModel(ModItems.SWIFTNESS_GRAY_VAPE, "gray_vape");
+        registerItemModel(ModItems.SWIFTNESS_BLACK_VAPE, "black_vape");
+
+        registerItemModel(ModItems.WATER_BREATHING_RED_VAPE, "red_vape");
+        registerItemModel(ModItems.WATER_BREATHING_ORANGE_VAPE, "orange_vape");
+        registerItemModel(ModItems.WATER_BREATHING_YELLOW_VAPE, "yellow_vape");
+        registerItemModel(ModItems.WATER_BREATHING_LIME_VAPE, "lime_vape");
+        registerItemModel(ModItems.WATER_BREATHING_GREEN_VAPE, "green_vape");
+        registerItemModel(ModItems.WATER_BREATHING_CYAN_VAPE, "cyan_vape");
+        registerItemModel(ModItems.WATER_BREATHING_LIGHT_BLUE_VAPE, "light_blue_vape");
+        registerItemModel(ModItems.WATER_BREATHING_BLUE_VAPE, "blue_vape");
+        registerItemModel(ModItems.WATER_BREATHING_PURPLE_VAPE, "purple_vape");
+        registerItemModel(ModItems.WATER_BREATHING_MAGENTA_VAPE, "magenta_vape");
+        registerItemModel(ModItems.WATER_BREATHING_PINK_VAPE, "pink_vape");
+        registerItemModel(ModItems.WATER_BREATHING_BROWN_VAPE, "brown_vape");
+        registerItemModel(ModItems.WATER_BREATHING_WHITE_VAPE, "white_vape");
+        registerItemModel(ModItems.WATER_BREATHING_LIGHT_GRAY_VAPE, "light_gray_vape");
+        registerItemModel(ModItems.WATER_BREATHING_GRAY_VAPE, "gray_vape");
+        registerItemModel(ModItems.WATER_BREATHING_BLACK_VAPE, "black_vape");
+
+        registerItemModel(ModItems.WEAKNESS_RED_VAPE, "red_vape");
+        registerItemModel(ModItems.WEAKNESS_ORANGE_VAPE, "orange_vape");
+        registerItemModel(ModItems.WEAKNESS_YELLOW_VAPE, "yellow_vape");
+        registerItemModel(ModItems.WEAKNESS_LIME_VAPE, "lime_vape");
+        registerItemModel(ModItems.WEAKNESS_GREEN_VAPE, "green_vape");
+        registerItemModel(ModItems.WEAKNESS_CYAN_VAPE, "cyan_vape");
+        registerItemModel(ModItems.WEAKNESS_LIGHT_BLUE_VAPE, "light_blue_vape");
+        registerItemModel(ModItems.WEAKNESS_BLUE_VAPE, "blue_vape");
+        registerItemModel(ModItems.WEAKNESS_PURPLE_VAPE, "purple_vape");
+        registerItemModel(ModItems.WEAKNESS_MAGENTA_VAPE, "magenta_vape");
+        registerItemModel(ModItems.WEAKNESS_PINK_VAPE, "pink_vape");
+        registerItemModel(ModItems.WEAKNESS_BROWN_VAPE, "brown_vape");
+        registerItemModel(ModItems.WEAKNESS_WHITE_VAPE, "white_vape");
+        registerItemModel(ModItems.WEAKNESS_LIGHT_GRAY_VAPE, "light_gray_vape");
+        registerItemModel(ModItems.WEAKNESS_GRAY_VAPE, "gray_vape");
+        registerItemModel(ModItems.WEAKNESS_BLACK_VAPE, "black_vape");
+
+        registerItemModel(ModItems.WITHER_RED_VAPE, "red_vape");
+        registerItemModel(ModItems.WITHER_ORANGE_VAPE, "orange_vape");
+        registerItemModel(ModItems.WITHER_YELLOW_VAPE, "yellow_vape");
+        registerItemModel(ModItems.WITHER_LIME_VAPE, "lime_vape");
+        registerItemModel(ModItems.WITHER_GREEN_VAPE, "green_vape");
+        registerItemModel(ModItems.WITHER_CYAN_VAPE, "cyan_vape");
+        registerItemModel(ModItems.WITHER_LIGHT_BLUE_VAPE, "light_blue_vape");
+        registerItemModel(ModItems.WITHER_BLUE_VAPE, "blue_vape");
+        registerItemModel(ModItems.WITHER_PURPLE_VAPE, "purple_vape");
+        registerItemModel(ModItems.WITHER_MAGENTA_VAPE, "magenta_vape");
+        registerItemModel(ModItems.WITHER_PINK_VAPE, "pink_vape");
+        registerItemModel(ModItems.WITHER_BROWN_VAPE, "brown_vape");
+        registerItemModel(ModItems.WITHER_WHITE_VAPE, "white_vape");
+        registerItemModel(ModItems.WITHER_LIGHT_GRAY_VAPE, "light_gray_vape");
+        registerItemModel(ModItems.WITHER_GRAY_VAPE, "gray_vape");
+        registerItemModel(ModItems.WITHER_BLACK_VAPE, "black_vape");
+
+    }
+}

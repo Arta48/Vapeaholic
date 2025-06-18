@@ -1,67 +1,74 @@
 package com.arta.vapeaholic.item.items.vapes.swiftness;
 
-import com.arta.vapeaholic.variable.ModVariables;
 import com.arta.vapeaholic.Vapeaholic;
+import com.arta.vapeaholic.item.ModItemGroups;
 import com.arta.vapeaholic.particle.ModParticleTypes;
 import com.arta.vapeaholic.procedure.RightClickProcedure;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.block.BlockState;
-import net.minecraft.component.type.TooltipDisplayComponent;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
+import com.arta.vapeaholic.variable.ModVariables;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
+import net.minecraft.item.EnumAction;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.consume.UseAction;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.text.Text;
+import net.minecraft.potion.Potion;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import static net.minecraft.util.text.translation.I18n.translateToLocal;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
-import java.util.function.Consumer;
+import java.util.List;
 
 public class SwiftnessLightGrayVape extends Item {
 
-    public SwiftnessLightGrayVape() {
-        super(ModVariables.VapeSettings.registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Vapeaholic.MOD_ID,"light_gray_vape"))));
-    }
+	public SwiftnessLightGrayVape(String name) {
+		super();
 
-    @Override
-    public UseAction getUseAction(ItemStack itemstack) {
-        return UseAction.DRINK;
-    }
+		this.setRegistryName(name);
+		this.setTranslationKey(Vapeaholic.MOD_ID + "." + "light_gray_vape");
+		this.setCreativeTab(ModItemGroups.VAPES_TAB);
+		this.setMaxDamage(ModVariables.VapeDurability);
+		this.maxStackSize = ModVariables.VapeMaxCount;
+	}
 
-    @Override
-    public int getMaxUseTime(ItemStack itemstack, LivingEntity livingEntity) {
-        return -2;
-    }
+	@Override
+	public EnumRarity getRarity(ItemStack itemstack) {
+		return ModVariables.VapeRarity;
+	}
 
-    @Override
-    public float getMiningSpeed(ItemStack itemstack, BlockState state) {
-        return 1.5f;
-    }
+	@Override
+	public EnumAction getItemUseAction(ItemStack itemstack) {
+		return EnumAction.DRINK;
+	}
 
-    @Override
-    @Environment(EnvType.CLIENT)
-    public void appendTooltip(ItemStack stack, TooltipContext context, TooltipDisplayComponent displayComponent, Consumer<Text> textConsumer, TooltipType type) {
-        textConsumer.accept(Text.translatable("item.vapeoholic.swiftness_vape.tooltip"));
-    }
+	@Override
+	public int getMaxItemUseDuration(ItemStack itemstack) {
+		return -2;
+	}
 
-    @Override
-    public ActionResult use(World world, PlayerEntity playerEntity, Hand hand) {
-        ItemStack itemStack = playerEntity.getStackInHand(hand);
-        ArrayList<RegistryEntry<StatusEffect>> effectList = new ArrayList<RegistryEntry<StatusEffect>>();
-        effectList.add(StatusEffects.SPEED);
-        RightClickProcedure.execute(world, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), playerEntity, itemStack, ModParticleTypes.SWIFTNESS_PARTICLE, effectList);
-        return ActionResult.PASS; // PASS instead of SUCCESS for hand animation
+	@Override
+	public float getDestroySpeed(ItemStack itemstack, IBlockState state) {
+		return 1.5f;
+	}
 
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, World world, List<String> tooltip, ITooltipFlag advanced) {
+		tooltip.add(translateToLocal("item.vapeoholic.swiftness_vape.tooltip"));
+	}
+
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer entityPlayer, EnumHand hand) {
+		ItemStack itemStack = entityPlayer.getHeldItem(hand);
+		ArrayList<Potion> effectList = new ArrayList<Potion>();
+		effectList.add(MobEffects.SPEED);
+		RightClickProcedure.execute(world, entityPlayer.posX, entityPlayer.posY, entityPlayer.posZ, entityPlayer, itemStack, ModParticleTypes.SWIFTNESS_PARTICLE, effectList);
+		return new ActionResult(EnumActionResult.PASS, itemStack); // PASS instead of SUCCESS for hand animation
+	}
 }

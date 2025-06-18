@@ -1,0 +1,68 @@
+item.vapeaholic.battery.name=Battery
+item.vapeaholic.coil.name=Coil
+item.vapeaholic.mouthpiece.name=Mouthpiece
+
+item.vapeaholic.vape_pod.name=Vape Pod
+item.vapeaholic.water_vape_pod.name=Water Vape Pod
+item.vapeaholic.mundane_vape_pod.name=Mundane Vape Pod
+item.vapeaholic.thick_vape_pod.name=Thick Vape Pod
+item.vapeaholic.awkward_vape_pod.name=Awkward Vape Pod
+item.vapeaholic.fire_resistance_vape_pod.name=Vape Pod of Fire Resistance
+item.vapeaholic.instant_damage_vape_pod.name=Vape Pod of Instant Damage
+item.vapeaholic.instant_health_vape_pod.name=Vape Pod of Instant Health
+item.vapeaholic.invisibility_vape_pod.name=Vape Pod of Invisibility
+item.vapeaholic.jump_boost_vape_pod.name=Vape Pod of Leaping
+item.vapeaholic.luck_vape_pod.name=Vape Pod of Luck
+item.vapeaholic.night_vision_vape_pod.name=Vape Pod of Night Vision
+item.vapeaholic.poison_vape_pod.name=Vape Pod of Poison
+item.vapeaholic.regeneration_vape_pod.name=Vape Pod of Regeneration
+item.vapeaholic.slowness_vape_pod.name=Vape Pod of Slowness
+item.vapeaholic.strength_vape_pod.name=Vape Pod of Strength
+item.vapeaholic.swiftness_vape_pod.name=Vape Pod of Swiftness
+item.vapeaholic.water_breathing_vape_pod.name=Vape Pod of Water Breathing
+item.vapeaholic.weakness_vape_pod.name=Vape Pod of Weakness
+item.vapeaholic.wither_vape_pod.name=Vape Pod of Wither
+
+item.vapeaholic.red_vape.name=Red Vape
+item.vapeaholic.orange_vape.name=Orange Vape
+item.vapeaholic.yellow_vape.name=Yellow Vape
+item.vapeaholic.lime_vape.name=Lime Vape
+item.vapeaholic.green_vape.name=Green Vape
+item.vapeaholic.cyan_vape.name=Cyan Vape
+item.vapeaholic.light_blue_vape.name=Light Blue Vape
+item.vapeaholic.blue_vape.name=Blue Vape
+item.vapeaholic.purple_vape.name=Purple Vape
+item.vapeaholic.magenta_vape.name=Magenta Vape
+item.vapeaholic.pink_vape.name=Pink Vape
+item.vapeaholic.brown_vape.name=Brown Vape
+item.vapeaholic.white_vape.name=White Vape
+item.vapeaholic.light_gray_vape.name=Light Gray Vape
+item.vapeaholic.gray_vape.name=Gray Vape
+item.vapeaholic.black_vape.name=Black Vape
+
+itemGroup.vapeaholic.vapes_tab=Vapes
+itemGroup.vapeaholic.vape_pods_tab=Vape Pods
+itemGroup.vapeaholic.vape_components_tab=Vape Components
+
+item.vapeoholic.vape.tooltip=§4Vape Pod is missing!
+item.vapeoholic.water_vape.tooltip=§7No Effect
+item.vapeoholic.fire_resistance_vape.tooltip=§9Fire Resistance (0:08)
+item.vapeoholic.instant_damage_vape.tooltip=§cInstant Damage (0:08)
+item.vapeoholic.instant_health_vape.tooltip=§9Instant Health (0:08)
+item.vapeoholic.invisibility_vape.tooltip=§9Invisibility (0:08)
+item.vapeoholic.jump_boost_vape.tooltip=§9Jump Boost (0:08)
+item.vapeoholic.luck_vape.tooltip=§9Luck (0:08)
+item.vapeoholic.night_vision_vape.tooltip=§9Night Vision (0:08)
+item.vapeoholic.poison_vape.tooltip=§cPoison (0:08)
+item.vapeoholic.regeneration_vape.tooltip=§9Regeneration (0:08)
+item.vapeoholic.slowness_vape.tooltip=§cSlowness (0:08)
+item.vapeoholic.strength_vape.tooltip=§9Strength (0:08)
+item.vapeoholic.swiftness_vape.tooltip=§9Swiftness (0:08)
+item.vapeoholic.water_breathing_vape.tooltip=§9Water Breathing (0:08)
+item.vapeoholic.weakness_vape.tooltip=§cWeakness (0:08)
+item.vapeoholic.wither_vape.tooltip=§cWither (0:08)
+
+message.vapeoholic.no_vape_pod=There is no Vape Pod in this Vape!
+message.vapeoholic.need_replace=Vape Pod needs to be replaced!
+
+subtitles.vapeoholic.breathing=Player vapes"

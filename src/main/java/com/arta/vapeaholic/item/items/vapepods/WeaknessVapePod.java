@@ -1,14 +1,16 @@
 package com.arta.vapeaholic.item.items.vapepods;
 
 import com.arta.vapeaholic.Vapeaholic;
+import com.arta.vapeaholic.item.ModItemGroups;
 import net.minecraft.item.Item;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
 
 public class WeaknessVapePod extends Item {
 
-    public WeaknessVapePod() {
-        super(new Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Vapeaholic.MOD_ID,"weakness_vape_pod"))));
+    public WeaknessVapePod(String name) {
+        super();
+
+        this.setRegistryName(name);
+        this.setTranslationKey(Vapeaholic.MOD_ID + "." + name);
+        this.setCreativeTab(ModItemGroups.VAPE_PODS_TAB);
     }
 }

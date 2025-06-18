@@ -2,34 +2,39 @@ package com.arta.vapeaholic.particle;
 
 import com.arta.vapeaholic.Vapeaholic;
 import com.arta.vapeaholic.particle.particles.*;
-import com.arta.vapeaholic.particle.ModParticleTypes;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.IParticleFactory;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Environment(EnvType.CLIENT)
+@SideOnly(Side.CLIENT)
 public class ModParticles {
 
+    private static void registerParticle(int id, IParticleFactory factory) {
+        Minecraft.getMinecraft().effectRenderer.registerParticle(id, factory);
+    }
 
     public static void registerModParticles() {
         Vapeaholic.LOGGER.info("Registering Mod Particles for " + Vapeaholic.MOD_ID);
 
-        ParticleFactoryRegistry.getInstance().register(ModParticleTypes.WATER_PARTICLE, WaterParticle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticleTypes.FIRE_RESISTANCE_PARTICLE, FireResistanceParticle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticleTypes.INSTANT_DAMAGE_PARTICLE, InstantDamageParticle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticleTypes.INSTANT_HEALTH_PARTICLE, InstantHealthParticle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticleTypes.JUMP_BOOST_PARTICLE, JumpBoostParticle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticleTypes.LUCK_PARTICLE, LuckParticle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticleTypes.NIGHT_VISION_PARTICLE, NightVisionParticle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticleTypes.POISON_PARTICLE, PoisonParticle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticleTypes.REGENERATION_PARTICLE, RegenerationParticle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticleTypes.SLOW_FALLING_PARTICLE, SlowFallingParticle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticleTypes.SLOWNESS_PARTICLE, SlownessParticle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticleTypes.STRENGTH_PARTICLE, StrengthParticle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticleTypes.SWIFTNESS_PARTICLE, SwiftnessParticle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticleTypes.TURTLE_MASTER_PARTICLE, TurtleMasterParticle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticleTypes.WATER_BREATHING_PARTICLE, WaterBreathingParticle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticleTypes.WEAKNESS_PARTICLE, WeaknessParticle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticleTypes.WITHER_PARTICLE, WitherParticle::provider);
+        int id = EnumParticleTypes.values().length;
+
+        registerParticle(id++, new WaterParticle.Factory());
+        registerParticle(id++, new FireResistanceParticle.Factory());
+        registerParticle(id++, new InstantDamageParticle.Factory());
+        registerParticle(id++, new InstantHealthParticle.Factory());
+        registerParticle(id++, new JumpBoostParticle.Factory());
+        registerParticle(id++, new LuckParticle.Factory());
+        registerParticle(id++, new NightVisionParticle.Factory());
+        registerParticle(id++, new PoisonParticle.Factory());
+        registerParticle(id++, new RegenerationParticle.Factory());
+        registerParticle(id++, new SlownessParticle.Factory());
+        registerParticle(id++, new StrengthParticle.Factory());
+        registerParticle(id++, new SwiftnessParticle.Factory());
+        registerParticle(id++, new WaterBreathingParticle.Factory());
+        registerParticle(id++, new WeaknessParticle.Factory());
+        registerParticle(id++, new WitherParticle.Factory());
+
     }
 }

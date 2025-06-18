@@ -1,28 +1,55 @@
 package com.arta.vapeaholic;
 
+import com.arta.vapeaholic.item.ModItemModels;
 import com.arta.vapeaholic.item.ModItems;
 import com.arta.vapeaholic.item.ModItemGroups;
+import com.arta.vapeaholic.network.ModPacketHandler;
+import com.arta.vapeaholic.particle.ModParticles;
 import com.arta.vapeaholic.particle.ModParticleTypes;
 import com.arta.vapeaholic.sound.ModSounds;
 import com.arta.vapeaholic.variable.ModVariables;
-import net.fabricmc.api.ModInitializer;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
-public class Vapeaholic implements ModInitializer {
+@Mod(modid = Vapeaholic.MOD_ID, name = Vapeaholic.MOD_NAME, version = Vapeaholic.MOD_VERSION)
+public class Vapeaholic {
 	public static final String MOD_ID = "vapeaholic";
-	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+	public static final String MOD_NAME = "Vapeaholic";
+	public static final String MOD_VERSION = "1.0.0";
+	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
-	@Override
-	public void onInitialize() {
+	@Mod.EventHandler
+	public static void preInit(FMLPreInitializationEvent event) {
 		ModVariables.registerModVariables();
 
-		ModItems.registerModItems();
 		ModItemGroups.registerModItemGroups();
-
-		ModParticleTypes.registerModParticleTypes();
+		ModItems.registerModItems();
 
 		ModSounds.registerModSounds();
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Mod.EventHandler
+	public static void ClientPreInit(FMLPreInitializationEvent event) {
+		ModItemModels.registerModItemModels();
+	}
+
+	@Mod.EventHandler
+	public static void Init(FMLInitializationEvent event) {
+		ModParticleTypes.registerModParticleTypes();
+
+		ModPacketHandler.init();
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Mod.EventHandler
+	public static void ClientInit(FMLInitializationEvent event) {
+		ModParticles.registerModParticles();
 	}
 }

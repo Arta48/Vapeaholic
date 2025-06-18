@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "vapeaholic:orange_vape"
+    },
+    {
+      "item": "vapeaholic:mundane_vape_pod"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "item": "vapeaholic:water_orange_vape"
+  }
+}

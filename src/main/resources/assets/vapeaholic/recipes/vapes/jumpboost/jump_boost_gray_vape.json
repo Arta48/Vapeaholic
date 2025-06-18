@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "vapeaholic:gray_vape"
+    },
+    {
+      "item": "vapeaholic:jump_boost_vape_pod"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "item": "vapeaholic:jump_boost_gray_vape"
+  }
+}

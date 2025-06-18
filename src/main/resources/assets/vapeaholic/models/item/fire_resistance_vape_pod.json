@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {                
-    "layer0": "vapeaholic:item/fire_resistance_vape_pod"
+    "layer0": "vapeaholic:items/fire_resistance_vape_pod"
   }
 }

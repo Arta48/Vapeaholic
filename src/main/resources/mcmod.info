@@ -1,0 +1,18 @@
+[
+{
+    "modid": "${modid}",
+    "name": "${name}",
+    "description": "${description}",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": [
+        "${author}"
+    ],
+    "credits": "",
+    "logoFile": "assets/vapeaholic/icon.png",
+    "screenshots": [],
+    "dependencies": []
+}
+]

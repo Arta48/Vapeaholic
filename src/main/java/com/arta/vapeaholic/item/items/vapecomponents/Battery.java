@@ -1,14 +1,17 @@
 package com.arta.vapeaholic.item.items.vapecomponents;
 
 import com.arta.vapeaholic.Vapeaholic;
+import com.arta.vapeaholic.item.ModItemGroups;
 import net.minecraft.item.Item;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
 
 public class Battery extends Item {
 
-    public Battery() {
-        super(new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Vapeaholic.MOD_ID,"battery"))));
-    }
+	public Battery(String name) {
+		super();
+
+		this.setRegistryName(name);
+		this.setTranslationKey(Vapeaholic.MOD_ID + "." + name);
+		this.setCreativeTab(ModItemGroups.VAPE_COMPONENTS_TAB);
+	}
 }
+

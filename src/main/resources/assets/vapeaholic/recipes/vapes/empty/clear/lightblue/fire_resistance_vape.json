@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "vapeaholic:fire_resistance_light_blue_vape",
+      "data": 32767
+    }
+  ],
+  "result": {
+    "count": 1,
+    "item": "vapeaholic:light_blue_vape"
+  }
+}

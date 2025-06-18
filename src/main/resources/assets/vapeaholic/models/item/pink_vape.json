@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {                
-    "layer0": "vapeaholic:item/pink_vape"
+    "layer0": "vapeaholic:items/pink_vape"
   }
 }

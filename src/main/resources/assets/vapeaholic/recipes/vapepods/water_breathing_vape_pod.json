@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "vapeaholic:awkward_vape_pod"
+    },
+    {
+      "item": "minecraft:fish",
+      "data": 3
+    }
+  ],
+  "result": {
+    "count": 1,
+    "item": "vapeaholic:water_breathing_vape_pod"
+  }
+}

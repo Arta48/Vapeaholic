@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "vapeaholic:water_breathing_cyan_vape",
+      "data": 32767
+    }
+  ],
+  "result": {
+    "count": 1,
+    "item": "vapeaholic:cyan_vape"
+  }
+}
