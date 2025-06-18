@@ -60,10 +60,10 @@ Needed Components:
 
 The potions are brewed the same way as vanilla Minecraft, but instead using Vape Pods in Crafting table!
 
-**Insterting Pods:**
+**Insterting Vape Pods:**
 
 To use a Vape Pod in a Vape, put the desired pod next to your Vape in a Crafting table.
 
 **Ex:**
 
-![Insterting A Pod](https://github.com/user-attachments/assets/27cb0174-cd9c-49c8-91ab-0bcd382623ac)
+![Insterting a Vape Pod](https://github.com/user-attachments/assets/27cb0174-cd9c-49c8-91ab-0bcd382623ac)
