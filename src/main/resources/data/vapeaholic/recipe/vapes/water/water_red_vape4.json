@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "vapeaholic:red_vape",
+    "vapeaholic:awkward_vape_pod"
+  ],
+  "result": {
+    "count": 1,
+    "id": "vapeaholic:water_red_vape"
+  }
+}

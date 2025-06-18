@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "vapeaholic:brown_vape",
+    "vapeaholic:luck_vape_pod"
+  ],
+  "result": {
+    "count": 1,
+    "id": "vapeaholic:luck_brown_vape"
+  }
+}

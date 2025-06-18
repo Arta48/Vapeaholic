@@ -1,0 +1,19 @@
+{
+  "breathing": {
+    "subtitle": "subtitles.vapeoholic.breathing",
+    "sounds": [
+      {
+        "name": "vapeaholic:breathing3",
+        "stream": false
+      },
+      {
+        "name": "vapeaholic:breathing2",
+        "stream": false
+      },
+      {
+        "name": "vapeaholic:breathing1",
+        "stream": false
+      }
+    ]
+  }
+}

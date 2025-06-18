@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "${id}",
+  "version": "${version}",
+  "name": "${name}",
+  "description": "${description}",
+  "authors": [
+    "${author}"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "license": "MIT",
+  "icon": "assets/vapeaholic/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.arta.vapeaholic.Vapeaholic"
+    ],
+    "fabric-datagen": [
+      "com.arta.vapeaholic.VapeaholicDataGenerator"
+    ],
+    "client": [
+      "com.arta.vapeaholic.VapeaholicClient"
+    ]
+  },
+  "mixins": [
+    "vapeaholic.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": ">=${minecraft}",
+    "java": ">=${java}",
+    "fabric-api": "*"
+  }
+}

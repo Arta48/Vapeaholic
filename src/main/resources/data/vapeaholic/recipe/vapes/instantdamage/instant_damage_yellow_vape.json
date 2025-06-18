@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "vapeaholic:yellow_vape",
+    "vapeaholic:instant_damage_vape_pod"
+  ],
+  "result": {
+    "count": 1,
+    "id": "vapeaholic:instant_damage_yellow_vape"
+  }
+}

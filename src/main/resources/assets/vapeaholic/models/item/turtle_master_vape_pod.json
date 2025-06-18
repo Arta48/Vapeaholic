@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {                
+    "layer0": "vapeaholic:item/turtle_master_vape_pod"
+  }
+}

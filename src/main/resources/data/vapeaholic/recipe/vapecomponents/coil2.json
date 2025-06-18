@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": "minecraft:iron_nugget",
+    "B": "minecraft:iron_ingot"
+  },
+  "pattern": [
+    "BAA",
+    "AAB",
+    "BAA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "vapeaholic:coil"
+  }
+}

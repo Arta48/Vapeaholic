@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "vapeaholic:white_vape",
+    "vapeaholic:night_vision_vape_pod"
+  ],
+  "result": {
+    "count": 1,
+    "id": "vapeaholic:night_vision_white_vape"
+  }
+}

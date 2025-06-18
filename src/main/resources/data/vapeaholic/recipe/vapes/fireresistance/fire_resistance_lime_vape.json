@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "vapeaholic:lime_vape",
+    "vapeaholic:fire_resistance_vape_pod"
+  ],
+  "result": {
+    "count": 1,
+    "id": "vapeaholic:fire_resistance_lime_vape"
+  }
+}

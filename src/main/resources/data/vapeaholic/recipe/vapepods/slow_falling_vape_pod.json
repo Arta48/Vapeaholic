@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "vapeaholic:awkward_vape_pod",
+    "minecraft:phantom_membrane"
+  ],
+  "result": {
+    "count": 1,
+    "id": "vapeaholic:slow_falling_vape_pod"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type" : "minecraft:model",
+    "model": "vapeaholic:item/instant_health_vape_pod"
+  }
+}

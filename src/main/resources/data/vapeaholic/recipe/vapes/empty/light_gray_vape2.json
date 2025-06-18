@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#vapeaholic:light_gray_vapes"
+  ],
+  "result": {
+    "count": 1,
+    "id": "vapeaholic:light_gray_vape"
+  }
+}
