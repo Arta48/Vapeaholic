@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "vapeaholic:pink_vape",
+    "#vapeaholic:pink_vapes",
     "vapeaholic:slowness_vape_pod"
   ],
   "result": {

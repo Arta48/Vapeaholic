@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "vapeaholic:yellow_vape",
+    "#vapeaholic:yellow_vapes",
     "vapeaholic:awkward_vape_pod"
   ],
   "result": {

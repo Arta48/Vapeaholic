@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "vapeaholic:lime_vape",
+    "#vapeaholic:lime_vapes",
     "vapeaholic:water_breathing_vape_pod"
   ],
   "result": {

@@ -33,7 +33,7 @@ public class RightClickProcedure {
 
         if (particleType != null) {
             if (itemstack.getDamage() != ModVariables.VapeDurability - 1) {
-                if (entity instanceof LivingEntity _entity && !_entity.getWorld().isClient() && effectList != null)
+                if (entity instanceof LivingEntity _entity && !_entity.getEntityWorld().isClient() && effectList != null)
                     for (int index0 = 0; index0 < effectList.size(); index0++) {
                         _entity.addStatusEffect(new StatusEffectInstance(effectList.get(index0), ModVariables.EffectDuration, ModVariables.EffectStrength, false, true));
                     }
@@ -51,7 +51,7 @@ public class RightClickProcedure {
                     if (!_level.isClient()) {
                         _level.playSound(null, BlockPos.ofFloored(x, y, z), ModSounds.BREATHING, SoundCategory.PLAYERS, 1, 1);
                     } else {
-                        _level.playSoundClient(x, y, z, ModSounds.BREATHING, SoundCategory.PLAYERS, 1, 1, false);
+                        _level.playSound(x, y, z, ModSounds.BREATHING, SoundCategory.PLAYERS, 1, 1, false);
                     }
                 }
 
@@ -59,7 +59,7 @@ public class RightClickProcedure {
                     public boolean checkGamemode(Entity _ent) {
                         if (_ent instanceof ServerPlayerEntity _serverPlayer) {
                             return _serverPlayer.interactionManager.getGameMode() == GameMode.CREATIVE;
-                        } else if (_ent.getWorld().isClient() && _ent instanceof PlayerEntity _player) {
+                        } else if (_ent.getEntityWorld().isClient() && _ent instanceof PlayerEntity _player) {
                             return MinecraftClient.getInstance().getNetworkHandler().getPlayerListEntry(_player.getGameProfile().getId()) != null
                                     && MinecraftClient.getInstance().getNetworkHandler().getPlayerListEntry(_player.getGameProfile().getId()).getGameMode() == GameMode.CREATIVE;
                         }
@@ -76,11 +76,11 @@ public class RightClickProcedure {
                     _player.getItemCooldownManager().set(itemstack, ModVariables.VapeCooldown);
 
             } else {
-                if (entity instanceof PlayerEntity _player && !_player.getWorld().isClient())
+                if (entity instanceof PlayerEntity _player && !_player.getEntityWorld().isClient())
                     _player.sendMessage(Text.translatable("message.vapeoholic.need_replace"), true);
             }
         } else {
-            if (entity instanceof PlayerEntity _player && !_player.getWorld().isClient())
+            if (entity instanceof PlayerEntity _player && !_player.getEntityWorld().isClient())
                 _player.sendMessage(Text.translatable("message.vapeoholic.no_vape_pod"), true);
         }
     }

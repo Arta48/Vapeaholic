@@ -2,7 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "#vapeaholic:cyan_vapes"
+    "#vapeaholic:vapes",
+    "minecraft:cyan_dye"
   ],
   "result": {
     "count": 1,

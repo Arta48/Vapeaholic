@@ -3,6 +3,7 @@ package com.arta.vapeaholic;
 import com.arta.vapeaholic.item.ModItems;
 import com.arta.vapeaholic.item.ModItemGroups;
 import com.arta.vapeaholic.particle.ModParticleTypes;
+import com.arta.vapeaholic.particle.ModParticles;
 import com.arta.vapeaholic.sound.ModSounds;
 import com.arta.vapeaholic.variable.ModVariables;
 import net.fabricmc.api.ModInitializer;

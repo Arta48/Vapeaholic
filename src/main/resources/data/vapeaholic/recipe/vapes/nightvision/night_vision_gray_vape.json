@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "vapeaholic:gray_vape",
+    "#vapeaholic:gray_vapes",
     "vapeaholic:night_vision_vape_pod"
   ],
   "result": {

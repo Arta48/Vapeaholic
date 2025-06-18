@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "#vapeaholic:empty_vapes",
+    "#vapeaholic:vapes",
     "minecraft:green_dye"
   ],
   "result": {

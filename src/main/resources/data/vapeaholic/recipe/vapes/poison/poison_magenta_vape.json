@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "vapeaholic:magenta_vape",
+    "#vapeaholic:magenta_vapes",
     "vapeaholic:poison_vape_pod"
   ],
   "result": {

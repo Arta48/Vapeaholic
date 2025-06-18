@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "vapeaholic:orange_vape",
+    "#vapeaholic:orange_vapes",
     "vapeaholic:jump_boost_vape_pod"
   ],
   "result": {

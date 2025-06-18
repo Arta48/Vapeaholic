@@ -2,10 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "#vapeaholic:magenta_vapes"
+    "#vapeaholic:vapes",
+    "minecraft:pink_dye"
   ],
   "result": {
     "count": 1,
-    "id": "vapeaholic:magenta_vape"
+    "id": "vapeaholic:pink_vape"
   }
 }
