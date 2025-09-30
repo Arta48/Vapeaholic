@@ -7,6 +7,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.SimpleParticleType;
+import net.minecraft.util.math.random.Random;
 
 @Environment(EnvType.CLIENT)
 public class PoisonParticle extends AnimatedParticle {
@@ -21,12 +22,12 @@ public class PoisonParticle extends AnimatedParticle {
             this.spriteProvider = spriteProvider;
         }
 
-        public Particle createParticle(SimpleParticleType simpleParticleType, ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
-            return new PoisonParticle(clientWorld, x, y, z, velocityX, velocityY, velocityZ, this.spriteProvider);
+        public Particle createParticle(SimpleParticleType simpleParticleType, ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ, Random random) {
+            return new PoisonParticle(clientWorld, x, y, z, velocityX, velocityY, velocityZ, random, this.spriteProvider);
         }
     }
 
-    public PoisonParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteProvider spriteProvider) {
+    public PoisonParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, Random random, SpriteProvider spriteProvider) {
         super(world, x, y, z, spriteProvider, 0f);
         this.velocityX = velocityX * ModVariables.ParticleSpeed;
         this.velocityY = velocityY * ModVariables.ParticleSpeed;
@@ -36,12 +37,12 @@ public class PoisonParticle extends AnimatedParticle {
         this.maxAge = ModVariables.ParticleMaxAge;
         this.gravityStrength = ModVariables.ParticleGravityStrength;
         this.collidesWithWorld = ModVariables.CollideWithWorld;
-        this.setSpriteForAge(spriteProvider);
+        this.updateSprite(spriteProvider);
     }
 
     @Override
-    public ParticleTextureSheet getType() {
-        return ModClientVariables.ParticleSheet;
+    public RenderType getRenderType() {
+        return ModClientVariables.ParticleAtlas;
     }
 
     @Override

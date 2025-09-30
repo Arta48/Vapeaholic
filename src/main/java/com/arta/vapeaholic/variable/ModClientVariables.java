@@ -1,13 +1,10 @@
 package com.arta.vapeaholic.variable;
 
 import com.arta.vapeaholic.Vapeaholic;
-import net.minecraft.client.particle.ParticleTextureSheet;
-import net.minecraft.item.Item;
-import net.minecraft.item.Item.Settings;
-import net.minecraft.util.Rarity;
+import net.minecraft.client.particle.BillboardParticle.RenderType;
 
 public class ModClientVariables {
-    public static final ParticleTextureSheet ParticleSheet = ParticleTextureSheet.PARTICLE_SHEET_OPAQUE;
+    public static final RenderType ParticleAtlas = RenderType.PARTICLE_ATLAS_OPAQUE;
 
 
     public static void registerModClientVariables() {
