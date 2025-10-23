@@ -1,17 +1,22 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "minecraft:crafting_shaped",
   "category": "misc",
-  "ingredients": [
-    {
+  "key": {
+    "A": {
       "item": "vapeaholic:awkward_vape_pod"
     },
-    {
+    "B": {
       "item": "minecraft:skull",
       "data": 1
     }
+  },
+  "pattern": [
+    "AAA",
+    "ABA",
+    "AAA"
   ],
   "result": {
-    "count": 1,
+    "count": 8,
     "item": "vapeaholic:wither_vape_pod"
   }
 }

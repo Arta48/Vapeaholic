@@ -1,16 +1,21 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "minecraft:crafting_shaped",
   "category": "misc",
-  "ingredients": [
-    {
+  "key": {
+    "A": {
       "item": "vapeaholic:jump_boost_vape_pod"
     },
-    {
+    "B": {
       "item": "minecraft:fermented_spider_eye"
     }
+  },
+  "pattern": [
+    "AAA",
+    "ABA",
+    "AAA"
   ],
   "result": {
-    "count": 1,
+    "count": 8,
     "item": "vapeaholic:slowness_vape_pod"
   }
 }
