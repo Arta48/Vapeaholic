@@ -1,12 +1,17 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "minecraft:crafting_shaped",
   "category": "misc",
-  "ingredients": [
-    "vapeaholic:awkward_vape_pod",
-    "minecraft:ghast_tear"
+  "key": {
+    "A": "vapeaholic:awkward_vape_pod",
+    "B": "minecraft:ghast_tear"
+  },
+  "pattern": [
+    "AAA",
+    "ABA",
+    "AAA"
   ],
   "result": {
-    "count": 1,
+    "count": 8,
     "id": "vapeaholic:regeneration_vape_pod"
   }
 }

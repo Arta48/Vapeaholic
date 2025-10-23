@@ -1,12 +1,17 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "minecraft:crafting_shaped",
   "category": "misc",
-  "ingredients": [
-    "vapeaholic:awkward_vape_pod",
-    "minecraft:blaze_powder"
+  "key": {
+    "A": "vapeaholic:awkward_vape_pod",
+    "B": "minecraft:blaze_powder"
+  },
+  "pattern": [
+    "AAA",
+    "ABA",
+    "AAA"
   ],
   "result": {
-    "count": 1,
+    "count": 8,
     "id": "vapeaholic:strength_vape_pod"
   }
 }
