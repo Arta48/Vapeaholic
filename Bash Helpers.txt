@@ -1,0 +1,445 @@
+# создание моделей предметов
+
+for i in "$(pwd)/textures/item/"*".png"; do
+    echo '{
+  "model": {
+    "type" : "minecraft:model",
+    "model": "vapeaholic:item/'"$(basename "$i" | sed "s|\.png||")"'"
+  }
+}' > "$(pwd)/items/$(basename "$i" | sed "s|\.png|\.json|")"
+    echo '{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "vapeaholic:item/'"$(basename "$i" | sed "s|\.png||")"'"
+  }
+}' > "$(pwd)/models/item/$(basename "$i" | sed "s|\.png|\.json|")"
+done
+
+
+
+
+# переименование частиц
+
+for i in "$(pwd)/textures/particle/"*".png"; do
+    mv "$i" "$(echo "$i" | sed "s|puff|particle|")"
+done
+
+
+
+
+# переименование моделей частиц
+
+for i in "$(pwd)/"*".json"; do
+    mv "$i" "$(echo "$i" | sed "s|puff|particle|")"
+done
+
+# починка моделей частиц
+
+for i in "$(pwd)/particles/"*".json"; do
+    sed -i "s|puff|particle|" "$i"
+done
+
+
+
+
+# создание компонентов
+
+for i in {"battery","coil","mouthpiece"}; do
+    # echo "$i"
+    echo 'package com.arta.vapeaholic.item.items.vapecomponents;
+
+import com.arta.vapeaholic.Vapeaholic;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.Item;
+
+public class '"$(echo "$i" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g")"' extends Item {
+
+    public '"$(echo "$i" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g")"'() {
+        super(new Properties()
+            .setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Vapeaholic.MOD_ID, "'"$(echo "$i" | sed "s| |_|g")"'")))
+        );
+    }
+}' > "$(echo "$i" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g").java"
+done
+
+
+
+
+# создание картриджей
+echo 'package com.arta.vapeaholic.item.items.vapepods;
+
+import com.arta.vapeaholic.Vapeaholic;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.Item;
+
+public class VapePod extends Item {
+
+    public VapePod() {
+        super(new Properties()
+            .setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Vapeaholic.MOD_ID, "vape_pod")))
+        );
+    }
+}' > "VapePod.java"
+
+for i in {"water","awkward","mundane","thick","fire resistance","instant damage","instant health","invisibility","jump boost","luck","night vision","poison","regeneration","slow falling","slowness","strength","turtle master","swiftness","water breathing","weakness","wither"}; do
+    # echo "$i"
+    echo 'package com.arta.vapeaholic.item.items.vapepods;
+
+import com.arta.vapeaholic.Vapeaholic;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.Item;
+
+public class '"$(echo "$i" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g")"'VapePod extends Item {
+
+    public '"$(echo "$i" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g")"'VapePod() {
+        super(new Properties()
+            .setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Vapeaholic.MOD_ID, "'"$(echo "$i" | sed "s| |_|g")"'_vape_pod")))
+        );
+    }
+}' > "$(echo "$i" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g")VapePod.java"
+done
+
+
+
+
+# раскопирование Red Vape по эффектам (без вейпов с исключениями (empty, water, invisibility, turtle master))
+
+for i in {"fire resistance","instant damage","instant health","jump boost","luck","night vision","poison","regeneration","slow falling","slowness","strength","swiftness","water breathing","weakness","wither"}; do
+    # echo "$i"
+    mkdir "$(echo "$i" | sed "s| ||g")"
+    echo 'package com.arta.vapeaholic.item.items.vapes.'"$(echo "$i" | sed "s| ||g")"';
+
+import com.arta.vapeaholic.variable.ModVariables;
+import com.arta.vapeaholic.Vapeaholic;
+import com.arta.vapeaholic.particle.ModParticleTypes;
+import com.arta.vapeaholic.procedure.RightClickProcedure;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUseAnimation;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+
+import java.util.ArrayList;
+import java.util.function.Consumer;
+import org.jspecify.annotations.NonNull;
+
+public class '"$(echo "$i" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g")"'RedVape extends Item {
+
+    public '"$(echo "$i" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g")"'RedVape() {
+        super(ModVariables.VapeSettings
+            .setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Vapeaholic.MOD_ID,"'"$(echo "$i" | sed "s| |_|g")"'_red_vape")))
+            .modelId(Identifier.fromNamespaceAndPath(Vapeaholic.MOD_ID,"red_vape"))
+            .overrideDescription("item.vapeaholic.red_vape")
+        );
+    }
+
+    @Override
+    public @NonNull ItemUseAnimation getUseAnimation(final @NonNull ItemStack itemStack) {
+        return ItemUseAnimation.DRINK;
+    }
+
+    @Override
+    public int getUseDuration(final @NonNull ItemStack itemStack, final @NonNull LivingEntity user) {
+        return -2;
+    }
+
+    @Override
+    public float getDestroySpeed(final @NonNull ItemStack itemStack, final @NonNull BlockState state) {
+        return 1.5f;
+    }
+
+    @Override
+    @Environment(EnvType.CLIENT)
+    public void appendHoverText(final @NonNull ItemStack itemStack, final @NonNull TooltipContext context, final @NonNull TooltipDisplay display, final Consumer<Component> builder, final @NonNull TooltipFlag tooltipFlag) {
+        builder.accept(Component.translatable("item.vapeaholic.'"$(echo "$i" | sed "s| |_|g")"'_vape.tooltip"));
+    }
+
+    @Override
+    public @NonNull InteractionResult use(final @NonNull Level level, final Player player, final @NonNull InteractionHand hand) {
+        ItemStack itemStack = player.getItemInHand(hand);
+        ArrayList<Holder<MobEffect>> effectList = new ArrayList<Holder<MobEffect>>();
+        effectList.add(MobEffects.'"$([[ "$i" == "swiftness" ]] && echo "SPEED" || echo "$i" | sed "s|\(.\)|\u\1|g" | sed "s| |_|g")"');
+        RightClickProcedure.execute(level, player.getX(), player.getY(), player.getZ(), player, itemStack, ModParticleTypes.'"$(echo "$i" | sed "s|\(.\)|\u\1|g" | sed "s| |_|g")"'_PARTICLE, effectList);
+        return InteractionResult.PASS; // PASS instead of SUCCESS for hand animation
+
+    }
+}' > "$(echo "$i" | sed "s| ||")/$(echo "$i" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g")RedVape.java"
+done
+
+
+
+
+# раскопирование empty и эффектных вейпов по цветам
+
+for i in {"orange","yellow","lime","green","cyan","light blue","blue","purple","magenta","pink","brown","white","light gray","gray","black"}; do
+    # echo "empty/$i"
+    echo "$(cat "empty/RedVape.java" | sed "s|RedVape|$(echo "$i" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g")Vape|g" | sed "s|red_vape|$(echo "$i" | sed "s| |_|g")_vape|g" )" > "empty/$(echo "$i" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g")Vape.java"
+done
+
+for i in {"water","fire resistance","instant damage","instant health","invisibility","jump boost","luck","night vision","poison","regeneration","slow falling","slowness","strength","swiftness","turtle master","water breathing","weakness","wither"}; do
+    for j in {"orange","yellow","lime","green","cyan","light blue","blue","purple","magenta","pink","brown","white","light gray","gray","black"}; do
+        # echo "$i/$j"
+        echo "$(cat "$(echo "$i" | sed "s| ||g")/$(echo "$i" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g")RedVape.java" | sed "s|RedVape|$(echo "$j" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g")Vape|g" | sed "s|red_vape|$(echo "$j" | sed "s| |_|g")_vape|g" )" > "$(echo "$i" | sed "s| ||g")/$(echo "$i" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g")$(echo "$j" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g")Vape.java"
+    done
+done
+
+
+
+
+# генерация ModItems
+
+for i in {"red","orange","yellow","lime","green","cyan","light blue","blue","purple","magenta","pink","brown","white","light gray","gray","black"}; do
+    echo '    public static final Item '"$(echo "$i" | sed "s|\(.\)|\u\1|g" | sed "s| |_|g")"'_VAPE = registerItem("'"$(echo "$i" | sed "s| |_|g")"'_vape", new '"$(echo "$i" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g")"'Vape());'
+done
+
+for i in {"water","fire resistance","instant damage","instant health","invisibility","jump boost","luck","night vision","poison","regeneration","slow falling","slowness","strength","swiftness","turtle master","water breathing","weakness","wither"}; do
+    echo ''
+    for j in {"red","orange","yellow","lime","green","cyan","light blue","blue","purple","magenta","pink","brown","white","light gray","gray","black"}; do
+        echo '    public static final Item '"$(echo "$i" | sed "s|\(.\)|\u\1|g" | sed "s| |_|g")"'_'"$(echo "$j" | sed "s|\(.\)|\u\1|g" | sed "s| |_|g")"'_VAPE = registerItem("'"$(echo "$i" | sed "s| |_|g")"'_'"$(echo "$j" | sed "s| |_|g")"'_vape", new '"$(echo "$i" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g")$(echo "$j" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g")"'Vape());'
+    done
+done
+
+
+
+
+# генерация импортов ModItems
+
+echo 'import com.arta.vapeaholic.item.items.vapes.empty.*;'
+
+for i in {"water","fire resistance","instant damage","instant health","invisibility","jump boost","luck","night vision","poison","regeneration","slow falling","slowness","strength","swiftness","turtle master","water breathing","weakness","wither"}; do
+    echo 'import com.arta.vapeaholic.item.items.vapes.'"$(echo "$i" | sed "s| ||g")"'.*;'
+done
+
+
+
+
+# генерация ModItemGroups
+
+for i in {"red","orange","yellow","lime","green","cyan","light blue","blue","purple","magenta","pink","brown","white","light gray","gray","black"}; do
+    echo '                        displayItems.accept(ModItems.'"$(echo "$i" | sed "s|\(.\)|\u\1|g" | sed "s| |_|g")"'_VAPE);'
+done
+
+for i in {"water","fire resistance","instant damage","instant health","invisibility","jump boost","luck","night vision","poison","regeneration","slow falling","slowness","strength","swiftness","turtle master","water breathing","weakness","wither"}; do
+    echo ''
+    for j in {"red","orange","yellow","lime","green","cyan","light blue","blue","purple","magenta","pink","brown","white","light gray","gray","black"}; do
+        echo '                        displayItems.accept(ModItems.'"$(echo "$i" | sed "s|\(.\)|\u\1|g" | sed "s| |_|g")"'_'"$(echo "$j" | sed "s|\(.\)|\u\1|g" | sed "s| |_|g")"'_VAPE);'
+    done
+done
+
+
+
+
+# генерация тега пустых вейпов (!!! убрать последнюю запятую)
+
+echo '{
+  "values": [' > "empty_vapes.json"
+
+for i in {"red","orange","yellow","lime","green","cyan","light blue","blue","purple","magenta","pink","brown","white","light gray","gray","black"}; do
+    echo '    "vapeaholic:'"$(echo "$i" | sed "s| |_|g")"'_vape",' >> "empty_vapes.json"
+done
+
+echo '  ]
+}' >> "empty_vapes.json"
+
+
+
+
+# генерация крафтов цветных вейпов
+
+mkdir "empty"
+for i in {"red","orange","yellow","lime","green","cyan","light blue","blue","purple","magenta","pink","brown","white","light gray","gray","black"}; do
+    echo '{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#vapeaholic:empty_vapes",
+    "minecraft:'"$(echo "$i" | sed "s| |_|g")"'_dye"
+  ],
+  "result": {
+    "count": 1,
+    "id": "vapeaholic:'"$(echo "$i" | sed "s| |_|g")"'_vape"
+  }
+}' > "empty/$(echo "$i" | sed "s| |_|g")_vape.json"
+done
+
+
+
+
+# генерация крафтов вейпов (папки по эффектам)
+
+for i in {"water","fire resistance","instant damage","instant health","invisibility","jump boost","luck","night vision","poison","regeneration","slow falling","slowness","strength","swiftness","turtle master","water breathing","weakness","wither"}; do
+    mkdir "$(echo "$i" | sed "s| ||g")"
+    for j in {"red","orange","yellow","lime","green","cyan","light blue","blue","purple","magenta","pink","brown","white","light gray","gray","black"}; do
+        echo '{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "vapeaholic:'"$(echo "$j" | sed "s| |_|g")"'_vape",
+    "vapeaholic:'"$(echo "$i" | sed "s| |_|g")"'_vape_pod"
+  ],
+  "result": {
+    "count": 1,
+    "id": "vapeaholic:'"$(echo "$i" | sed "s| |_|g")"'_'"$(echo "$j" | sed "s| |_|g")"'_vape"
+  }
+}' > "$(echo "$i" | sed "s| ||g")/$(echo "$i" | sed "s| |_|g")_$(echo "$j" | sed "s| |_|g")_vape.json"
+    done
+done
+
+
+
+
+# генерация крафтов вейпов без эффектов с заурядным, густым и мутным картриджем
+
+for i in {"red","orange","yellow","lime","green","cyan","light blue","blue","purple","magenta","pink","brown","white","light gray","gray","black"}; do
+    mv "water/water_$(echo "$i" | sed "s| |_|g")_vape.json" "water/water_$(echo "$i" | sed "s| |_|g")_vape1.json"
+    n=2
+    for j in {"mundane","thick","awkward"}; do
+        echo '{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "vapeaholic:'"$(echo "$i" | sed "s| |_|g")"'_vape",
+    "vapeaholic:'"$(echo "$j" | sed "s| |_|g")"'_vape_pod"
+  ],
+  "result": {
+    "count": 1,
+    "id": "vapeaholic:water_'"$(echo "$i" | sed "s| |_|g")"'_vape"
+  }
+}' > "water/water_$(echo "$i" | sed "s| |_|g")_vape$n.json"
+        n="$(echo "$n" + 1 | bc)"
+    done
+done
+
+
+
+
+# генерация тегов по цветам (!!! убрать последнюю запятую)
+
+for i in {"red","orange","yellow","lime","green","cyan","light blue","blue","purple","magenta","pink","brown","white","light gray","gray","black"}; do
+    echo '{
+  "values": [' > "$(echo "$i" | sed "s| |_|g")_vapes.json"
+
+#     echo '    "vapeaholic:'"$(echo "$i" | sed "s| |_|g")"'_vape",' >> "$(echo "$i" | sed "s| |_|g")_vapes.json"
+
+    for j in {"water","fire resistance","instant damage","instant health","invisibility","jump boost","luck","night vision","poison","regeneration","slow falling","slowness","strength","swiftness","turtle master","water breathing","weakness","wither"}; do
+        echo '    "vapeaholic:'"$(echo "$j" | sed "s| |_|g")"'_'"$(echo "$i" | sed "s| |_|g")"'_vape",' >> "$(echo "$i" | sed "s| |_|g")_vapes.json"
+    done
+
+    echo '  ]
+}' >> "$(echo "$i" | sed "s| |_|g")_vapes.json"
+done
+
+
+
+
+# генерация крафтов очищения вейпов
+
+for i in {"red","orange","yellow","lime","green","cyan","light blue","blue","purple","magenta","pink","brown","white","light gray","gray","black"}; do
+    mv "empty/$(echo "$i" | sed "s| |_|g")_vape.json" "empty/$(echo "$i" | sed "s| |_|g")_vape1.json"
+
+    echo '{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#vapeaholic:'"$(echo "$i" | sed "s| |_|g")"'_vapes"
+  ],
+  "result": {
+    "count": 1,
+    "id": "vapeaholic:'"$(echo "$i" | sed "s| |_|g")"'_vape"
+  }
+}' > "empty/$(echo "$i" | sed "s| |_|g")_vape2.json"
+done
+
+
+
+
+# генерация частиц
+for i in {"water","fire resistance","instant damage","instant health","jump boost","luck","night vision","poison","regeneration","slow falling","slowness","strength","turtle master","swiftness","water breathing","weakness","wither"}; do
+    # echo "$i"
+    echo 'package com.arta.vapeaholic.particle.particles;
+
+import com.arta.vapeaholic.variable.ModClientVariables;
+import com.arta.vapeaholic.variable.ModVariables;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.particle.v1.FabricSpriteSet;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.particle.*;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.util.RandomSource;
+
+@Environment(EnvType.CLIENT)
+public class '"$(echo "$i" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g")"'Particle extends SimpleAnimatedParticle {
+    private '"$(echo "$i" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g")"'Particle(final ClientLevel level, final double x, final double y, final double z, final double xa, final double ya, final double za, final SpriteSet sprites) {
+        super(level, x, y, z, sprites, 0f);
+        this.xd = xa * ModVariables.ParticleSpeed;
+        this.yd = ya * ModVariables.ParticleSpeed;
+        this.zd = za * ModVariables.ParticleSpeed;
+        this.quadSize = ModVariables.ParticleQuadSize;
+        this.setSize(ModVariables.ParticleSize, ModVariables.ParticleSize);
+        this.lifetime = ModVariables.ParticleLifeTime;
+        this.gravity = ModVariables.ParticleGravity;
+        this.hasPhysics = ModVariables.HasPhysics;
+        this.setSpriteFromAge(sprites);
+    }
+
+    public static '"$(echo "$i" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g")"'Provider Provider(FabricSpriteSet fabricSpriteSet) {
+        return new '"$(echo "$i" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g")"'Provider(fabricSpriteSet);
+    }
+
+    @Environment(EnvType.CLIENT)
+    public static class '"$(echo "$i" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g")"'Provider implements ParticleProvider<SimpleParticleType> {
+        private final SpriteSet sprites;
+
+        public '"$(echo "$i" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g")"'Provider(final SpriteSet sprites) {
+            this.sprites = sprites;
+        }
+
+        public Particle createParticle(final SimpleParticleType options, final ClientLevel level, final double x, final double y, final double z, final double xAux, final double yAux, final double zAux, final RandomSource random) {
+            return new '"$(echo "$i" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g")"'Particle(level, x, y, z, xAux, yAux, zAux, this.sprites);
+        }
+    }
+
+    @Override
+    public SingleQuadParticle.Layer getLayer() {
+        return ModClientVariables.ParticleLayer;
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (this.isAlive()) {
+            this.setSprite(this.sprites.get((this.age / 15) % 7 + 1, (this.lifetime / 15) % 7 + 1));
+        }
+    }
+}' > "$(echo "$i" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g")Particle.java"
+done
+
+
+
+
+# генерация ModParticles
+for i in {"water","fire resistance","instant damage","instant health","jump boost","luck","night vision","poison","regeneration","slow falling","slowness","strength","turtle master","swiftness","water breathing","weakness","wither"}; do
+    echo '        ParticleProviderRegistry.getInstance().register(ModParticleTypes.'"$(echo "$i" | sed "s|\(.\)|\u\1|g" | sed "s| |_|g")"'_PARTICLE, '"$(echo "$i" | sed "s|\b\(.\)|\u\1|g" | sed "s| ||g")"'Particle::Provider);'
+done

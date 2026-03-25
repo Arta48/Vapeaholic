@@ -4,52 +4,54 @@ import com.arta.vapeaholic.variable.ModClientVariables;
 import com.arta.vapeaholic.variable.ModVariables;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.particle.v1.FabricSpriteSet;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particle.SimpleParticleType;
-import net.minecraft.util.math.random.Random;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.util.RandomSource;
 
 @Environment(EnvType.CLIENT)
-public class LuckParticle extends AnimatedParticle {
-    public static LuckProvider provider(SpriteProvider spriteProvider) {
-        return new LuckProvider(spriteProvider);
+public class LuckParticle extends SimpleAnimatedParticle {
+    private LuckParticle(final ClientLevel level, final double x, final double y, final double z, final double xa, final double ya, final double za, final SpriteSet sprites) {
+        super(level, x, y, z, sprites, 0f);
+        this.xd = xa * ModVariables.ParticleSpeed;
+        this.yd = ya * ModVariables.ParticleSpeed;
+        this.zd = za * ModVariables.ParticleSpeed;
+        this.quadSize = ModVariables.ParticleQuadSize;
+        this.setSize(ModVariables.ParticleSize, ModVariables.ParticleSize);
+        this.lifetime = ModVariables.ParticleLifeTime;
+        this.gravity = ModVariables.ParticleGravity;
+        this.hasPhysics = ModVariables.HasPhysics;
+        this.setSpriteFromAge(sprites);
     }
 
-    public static class LuckProvider implements ParticleFactory<SimpleParticleType> {
-        private final SpriteProvider spriteProvider;
-
-        public LuckProvider(SpriteProvider spriteProvider) {
-            this.spriteProvider = spriteProvider;
-        }
-
-        public Particle createParticle(SimpleParticleType simpleParticleType, ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ, Random random) {
-            return new LuckParticle(clientWorld, x, y, z, velocityX, velocityY, velocityZ, random, this.spriteProvider);
-        }
+    public static LuckProvider Provider(FabricSpriteSet fabricSpriteSet) {
+        return new LuckProvider(fabricSpriteSet);
     }
 
-    public LuckParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, Random random, SpriteProvider spriteProvider) {
-        super(world, x, y, z, spriteProvider, 0f);
-        this.velocityX = velocityX * ModVariables.ParticleSpeed;
-        this.velocityY = velocityY * ModVariables.ParticleSpeed;
-        this.velocityZ = velocityZ * ModVariables.ParticleSpeed;
-        this.scale = ModVariables.ParticleScale;
-        this.setBoundingBoxSpacing(ModVariables.ParticleBoundingBoxSpacing, ModVariables.ParticleBoundingBoxSpacing);
-        this.maxAge = ModVariables.ParticleMaxAge;
-        this.gravityStrength = ModVariables.ParticleGravityStrength;
-        this.collidesWithWorld = ModVariables.CollideWithWorld;
-        this.updateSprite(spriteProvider);
+    @Environment(EnvType.CLIENT)
+    public static class LuckProvider implements ParticleProvider<SimpleParticleType> {
+        private final SpriteSet sprites;
+
+        public LuckProvider(final SpriteSet sprites) {
+            this.sprites = sprites;
+        }
+
+        public Particle createParticle(final SimpleParticleType options, final ClientLevel level, final double x, final double y, final double z, final double xAux, final double yAux, final double zAux, final RandomSource random) {
+            return new LuckParticle(level, x, y, z, xAux, yAux, zAux, this.sprites);
+        }
     }
 
     @Override
-    public RenderType getRenderType() {
-        return ModClientVariables.ParticleAtlas;
+    public SingleQuadParticle.Layer getLayer() {
+        return ModClientVariables.ParticleLayer;
     }
 
     @Override
     public void tick() {
         super.tick();
-        if (!this.dead) {
-            this.setSprite(this.spriteProvider.getSprite((this.age / 15) % 7 + 1, (this.maxAge / 15) % 7 + 1));
+        if (this.isAlive()) {
+            this.setSprite(this.sprites.get((this.age / 15) % 7 + 1, (this.lifetime / 15) % 7 + 1));
         }
     }
 }

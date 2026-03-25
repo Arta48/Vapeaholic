@@ -6,62 +6,67 @@ import com.arta.vapeaholic.particle.ModParticleTypes;
 import com.arta.vapeaholic.procedure.RightClickProcedure;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.BlockState;
-import net.minecraft.component.type.TooltipDisplayComponent;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.consume.UseAction;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUseAnimation;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;
+import org.jspecify.annotations.NonNull;
 
 public class PoisonLimeVape extends Item {
 
     public PoisonLimeVape() {
-        super(ModVariables.VapeSettings.registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Vapeaholic.MOD_ID,"lime_vape"))));
+        super(ModVariables.VapeSettings
+            .setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Vapeaholic.MOD_ID,"poison_lime_vape")))
+            .modelId(Identifier.fromNamespaceAndPath(Vapeaholic.MOD_ID,"lime_vape"))
+            .overrideDescription("item.vapeaholic.lime_vape")
+        );
     }
 
     @Override
-    public UseAction getUseAction(ItemStack itemstack) {
-        return UseAction.DRINK;
+    public @NonNull ItemUseAnimation getUseAnimation(final @NonNull ItemStack itemStack) {
+        return ItemUseAnimation.DRINK;
     }
 
     @Override
-    public int getMaxUseTime(ItemStack itemstack, LivingEntity livingEntity) {
+    public int getUseDuration(final @NonNull ItemStack itemStack, final @NonNull LivingEntity user) {
         return -2;
     }
 
     @Override
-    public float getMiningSpeed(ItemStack itemstack, BlockState state) {
+    public float getDestroySpeed(final @NonNull ItemStack itemStack, final @NonNull BlockState state) {
         return 1.5f;
     }
 
     @Override
     @Environment(EnvType.CLIENT)
-    public void appendTooltip(ItemStack stack, TooltipContext context, TooltipDisplayComponent displayComponent, Consumer<Text> textConsumer, TooltipType type) {
-        textConsumer.accept(Text.translatable("item.vapeoholic.poison_vape.tooltip"));
+    public void appendHoverText(final @NonNull ItemStack itemStack, final @NonNull TooltipContext context, final @NonNull TooltipDisplay display, final Consumer<Component> builder, final @NonNull TooltipFlag tooltipFlag) {
+        builder.accept(Component.translatable("item.vapeaholic.poison_vape.tooltip"));
     }
 
     @Override
-    public ActionResult use(World world, PlayerEntity playerEntity, Hand hand) {
-        ItemStack itemStack = playerEntity.getStackInHand(hand);
-        ArrayList<RegistryEntry<StatusEffect>> effectList = new ArrayList<RegistryEntry<StatusEffect>>();
-        effectList.add(StatusEffects.POISON);
-        RightClickProcedure.execute(world, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), playerEntity, itemStack, ModParticleTypes.POISON_PARTICLE, effectList);
-        return ActionResult.PASS; // PASS instead of SUCCESS for hand animation
+    public @NonNull InteractionResult use(final @NonNull Level level, final Player player, final @NonNull InteractionHand hand) {
+        ItemStack itemStack = player.getItemInHand(hand);
+        ArrayList<Holder<MobEffect>> effectList = new ArrayList<Holder<MobEffect>>();
+        effectList.add(MobEffects.POISON);
+        RightClickProcedure.execute(level, player.getX(), player.getY(), player.getZ(), player, itemStack, ModParticleTypes.POISON_PARTICLE, effectList);
+        return InteractionResult.PASS; // PASS instead of SUCCESS for hand animation
 
     }
 }

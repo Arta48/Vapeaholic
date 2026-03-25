@@ -2,10 +2,10 @@ package com.arta.vapeaholic.particle;
 
 import com.arta.vapeaholic.Vapeaholic;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
-import net.minecraft.particle.SimpleParticleType;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.Registry;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
 
 public class ModParticleTypes {
     public static final SimpleParticleType WATER_PARTICLE = registerParticleType("water_particle", FabricParticleTypes.simple(true));
@@ -28,7 +28,7 @@ public class ModParticleTypes {
 
 
     private static SimpleParticleType registerParticleType(String name, SimpleParticleType particleType) {
-        return Registry.register(Registries.PARTICLE_TYPE, Identifier.of(Vapeaholic.MOD_ID, name), particleType);
+        return Registry.register(BuiltInRegistries.PARTICLE_TYPE, Identifier.fromNamespaceAndPath(Vapeaholic.MOD_ID, name), particleType);
     }
 
     public static void registerModParticleTypes() {

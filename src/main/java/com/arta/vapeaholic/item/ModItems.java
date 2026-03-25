@@ -23,10 +23,10 @@ import com.arta.vapeaholic.item.items.vapes.waterbreathing.*;
 import com.arta.vapeaholic.item.items.vapes.weakness.*;
 import com.arta.vapeaholic.item.items.vapes.wither.*;
 
-import net.minecraft.item.Item;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.Item;
 
 public class ModItems {
     public static final Item BATTERY = registerItem("battery", new Battery());
@@ -382,7 +382,7 @@ public class ModItems {
 
 
     private static Item registerItem(String name, Item item) {
-        return Registry.register(Registries.ITEM, Identifier.of(Vapeaholic.MOD_ID, name), item);
+        return Registry.register(BuiltInRegistries.ITEM, Identifier.fromNamespaceAndPath(Vapeaholic.MOD_ID, name), item);
     }
 
     public static void registerModItems() {

@@ -1,14 +1,16 @@
 package com.arta.vapeaholic.item.items.vapepods;
 
 import com.arta.vapeaholic.Vapeaholic;
-import net.minecraft.item.Item;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.Item;
 
 public class SwiftnessVapePod extends Item {
 
     public SwiftnessVapePod() {
-        super(new Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Vapeaholic.MOD_ID,"swiftness_vape_pod"))));
+        super(new Properties()
+            .setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Vapeaholic.MOD_ID, "swiftness_vape_pod")))
+        );
     }
 }

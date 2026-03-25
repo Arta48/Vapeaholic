@@ -1,10 +1,10 @@
 package com.arta.vapeaholic.variable;
 
 import com.arta.vapeaholic.Vapeaholic;
-import net.minecraft.client.particle.BillboardParticle.RenderType;
+import net.minecraft.client.particle.SingleQuadParticle.Layer;
 
 public class ModClientVariables {
-    public static final RenderType ParticleAtlas = RenderType.PARTICLE_ATLAS_OPAQUE;
+    public static final Layer ParticleLayer = Layer.OPAQUE;
 
 
     public static void registerModClientVariables() {

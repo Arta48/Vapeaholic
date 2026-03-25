@@ -4,56 +4,54 @@ import com.arta.vapeaholic.variable.ModClientVariables;
 import com.arta.vapeaholic.variable.ModVariables;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.particle.AnimatedParticle;
-import net.minecraft.client.particle.Particle;
-import net.minecraft.client.particle.ParticleFactory;
-import net.minecraft.client.particle.ParticleTextureSheet;
-import net.minecraft.client.particle.SpriteProvider;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particle.SimpleParticleType;
-import net.minecraft.util.math.random.Random;
+import net.fabricmc.fabric.api.client.particle.v1.FabricSpriteSet;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.particle.*;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.util.RandomSource;
 
 @Environment(EnvType.CLIENT)
-public class WaterParticle extends AnimatedParticle {
-    public static WaterParticleProvider provider(SpriteProvider spriteProvider) {
-        return new WaterParticleProvider(spriteProvider);
+public class WaterParticle extends SimpleAnimatedParticle {
+    private WaterParticle(final ClientLevel level, final double x, final double y, final double z, final double xa, final double ya, final double za, final SpriteSet sprites) {
+        super(level, x, y, z, sprites, 0f);
+        this.xd = xa * ModVariables.ParticleSpeed;
+        this.yd = ya * ModVariables.ParticleSpeed;
+        this.zd = za * ModVariables.ParticleSpeed;
+        this.quadSize = ModVariables.ParticleQuadSize;
+        this.setSize(ModVariables.ParticleSize, ModVariables.ParticleSize);
+        this.lifetime = ModVariables.ParticleLifeTime;
+        this.gravity = ModVariables.ParticleGravity;
+        this.hasPhysics = ModVariables.HasPhysics;
+        this.setSpriteFromAge(sprites);
     }
 
-    public static class WaterParticleProvider implements ParticleFactory<SimpleParticleType> {
-        private final SpriteProvider spriteProvider;
-
-        public WaterParticleProvider(SpriteProvider spriteProvider) {
-            this.spriteProvider = spriteProvider;
-        }
-
-        public Particle createParticle(SimpleParticleType simpleParticleType, ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ, Random random) {
-            return new WaterParticle(clientWorld, x, y, z, velocityX, velocityY, velocityZ, random, this.spriteProvider);
-        }
+    public static WaterProvider Provider(FabricSpriteSet fabricSpriteSet) {
+        return new WaterProvider(fabricSpriteSet);
     }
 
-    public WaterParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, Random random, SpriteProvider spriteProvider) {
-        super(world, x, y, z, spriteProvider, 0f);
-        this.velocityX = velocityX * ModVariables.ParticleSpeed;
-        this.velocityY = velocityY * ModVariables.ParticleSpeed;
-        this.velocityZ = velocityZ * ModVariables.ParticleSpeed;
-        this.scale = ModVariables.ParticleScale;
-        this.setBoundingBoxSpacing(ModVariables.ParticleBoundingBoxSpacing, ModVariables.ParticleBoundingBoxSpacing);
-        this.maxAge = ModVariables.ParticleMaxAge;
-        this.gravityStrength = ModVariables.ParticleGravityStrength;
-        this.collidesWithWorld = ModVariables.CollideWithWorld;
-        this.updateSprite(spriteProvider);
+    @Environment(EnvType.CLIENT)
+    public static class WaterProvider implements ParticleProvider<SimpleParticleType> {
+        private final SpriteSet sprites;
+
+        public WaterProvider(final SpriteSet sprites) {
+            this.sprites = sprites;
+        }
+
+        public Particle createParticle(final SimpleParticleType options, final ClientLevel level, final double x, final double y, final double z, final double xAux, final double yAux, final double zAux, final RandomSource random) {
+            return new WaterParticle(level, x, y, z, xAux, yAux, zAux, this.sprites);
+        }
     }
 
     @Override
-    public RenderType getRenderType() {
-        return ModClientVariables.ParticleAtlas;
+    public SingleQuadParticle.Layer getLayer() {
+        return ModClientVariables.ParticleLayer;
     }
 
     @Override
     public void tick() {
         super.tick();
-        if (!this.dead) {
-            this.setSprite(this.spriteProvider.getSprite((this.age / 15) % 7 + 1, (this.maxAge / 15) % 7 + 1));
+        if (this.isAlive()) {
+            this.setSprite(this.sprites.get((this.age / 15) % 7 + 1, (this.lifetime / 15) % 7 + 1));
         }
     }
 }

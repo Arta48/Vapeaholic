@@ -5,56 +5,59 @@ import com.arta.vapeaholic.Vapeaholic;
 import com.arta.vapeaholic.procedure.RightClickProcedure;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.BlockState;
-import net.minecraft.component.type.TooltipDisplayComponent;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.consume.UseAction;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUseAnimation;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.function.Consumer;
+import org.jspecify.annotations.NonNull;
 
 public class CyanVape extends Item {
 
     public CyanVape() {
-        super(ModVariables.VapeSettings.registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Vapeaholic.MOD_ID,"cyan_vape"))));
+        super(ModVariables.VapeSettings
+            .setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Vapeaholic.MOD_ID,"cyan_vape")))
+        );
     }
 
     @Override
-    public UseAction getUseAction(ItemStack itemstack) {
-        return UseAction.DRINK;
+    public @NonNull ItemUseAnimation getUseAnimation(final @NonNull ItemStack itemStack) {
+        return ItemUseAnimation.DRINK;
     }
 
     @Override
-    public int getMaxUseTime(ItemStack itemstack, LivingEntity livingEntity) {
+    public int getUseDuration(final @NonNull ItemStack itemStack, final @NonNull LivingEntity user) {
         return -2;
     }
 
     @Override
-    public float getMiningSpeed(ItemStack itemstack, BlockState state) {
+    public float getDestroySpeed(final @NonNull ItemStack itemStack, final @NonNull BlockState state) {
         return 1.5f;
     }
 
     @Override
     @Environment(EnvType.CLIENT)
-    public void appendTooltip(ItemStack stack, TooltipContext context, TooltipDisplayComponent displayComponent, Consumer<Text> textConsumer, TooltipType type) {
-        textConsumer.accept(Text.translatable("item.vapeoholic.vape.tooltip"));
+    public void appendHoverText(final @NonNull ItemStack itemStack, final @NonNull TooltipContext context, final @NonNull TooltipDisplay display, final Consumer<Component> builder, final @NonNull TooltipFlag tooltipFlag) {
+        builder.accept(Component.translatable("item.vapeaholic.vape.tooltip"));
     }
 
     @Override
-    public ActionResult use(World world, PlayerEntity playerEntity, Hand hand) {
-        ItemStack itemStack = playerEntity.getStackInHand(hand);
-        RightClickProcedure.execute(world, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), playerEntity, itemStack, null, null);
-        return ActionResult.PASS; // PASS instead of SUCCESS for hand animation
+    public @NonNull InteractionResult use(final @NonNull Level level, final Player player, final @NonNull InteractionHand hand) {
+        ItemStack itemStack = player.getItemInHand(hand);
+        RightClickProcedure.execute(level, player.getX(), player.getY(), player.getZ(), player, itemStack, null, null);
+        return InteractionResult.PASS; // PASS instead of SUCCESS for hand animation
 
     }
 }
