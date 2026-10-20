@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": "vapeaholic:water_vape_pod",
+    "B": [
+      "minecraft:redstone",
+      "minecraft:magma_cream",
+      "minecraft:sugar",
+      "minecraft:glistering_melon_slice",
+      "minecraft:blaze_powder",
+      "minecraft:rabbit_foot",
+      "minecraft:ghast_tear",
+      "minecraft:spider_eye"
+    ]
+  },
+  "pattern": [
+    "AAA",
+    "ABA",
+    "AAA"
+  ],
+  "result": {
+    "count": 8,
+    "id": "vapeaholic:mundane_vape_pod"
+  }
+}

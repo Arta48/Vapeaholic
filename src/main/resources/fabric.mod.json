@@ -22,9 +22,6 @@
       "com.arta.vapeaholic.VapeaholicClient"
     ]
   },
-  "mixins": [
-    "vapeaholic.mixins.json"
-  ],
   "depends": {
     "fabricloader": "*",
     "minecraft": ">=${minecraft}",
