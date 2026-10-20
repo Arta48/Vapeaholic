@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "vapeaholic:awkward_vape_pod"
+    },
+    "B": {
+      "item": "minecraft:shulker_shell"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "ABA",
+    "AAA"
+  ],
+  "result": {
+    "count": 8,
+    "item": "vapeaholic:slow_falling_vape_pod"
+  }
+}

@@ -16,9 +16,11 @@ public class ModParticleTypes {
     public static final EnumParticleTypes NIGHT_VISION_PARTICLE = registerParticleType("night_vision_particle", id++, false, 0);
     public static final EnumParticleTypes POISON_PARTICLE = registerParticleType("poison_particle", id++, false, 0);
     public static final EnumParticleTypes REGENERATION_PARTICLE = registerParticleType("regeneration_particle", id++, false, 0);
+    public static final EnumParticleTypes SLOW_FALLING_PARTICLE = registerParticleType("slow_falling_particle", id++, false, 0);
     public static final EnumParticleTypes SLOWNESS_PARTICLE = registerParticleType("slowness_particle", id++, false, 0);
     public static final EnumParticleTypes STRENGTH_PARTICLE = registerParticleType("strength_particle", id++, false, 0);
     public static final EnumParticleTypes SWIFTNESS_PARTICLE = registerParticleType("swiftness_particle", id++, false, 0);
+    public static final EnumParticleTypes TURTLE_MASTER_PARTICLE = registerParticleType("turtle_master_particle", id++, false, 0);
     public static final EnumParticleTypes WATER_BREATHING_PARTICLE = registerParticleType("water_breathing_particle", id++, false, 0);
     public static final EnumParticleTypes WEAKNESS_PARTICLE = registerParticleType("weakness_particle", id++, false, 0);
     public static final EnumParticleTypes WITHER_PARTICLE = registerParticleType("wither_particle", id++, false, 0);
@@ -29,10 +31,7 @@ public class ModParticleTypes {
                 throw new RuntimeException("Attempted to register a particle with the same integer ID as " + existingParticle.getParticleName() + " (" + existingParticle + ").");
             }
         }
-
-        EnumParticleTypes particle = EnumHelper.addEnum(EnumParticleTypes.class, name, new Class[] {String.class, int.class, boolean.class, int.class}, name, id, ignoreRange, argumentCount);
-
-        return particle;
+        return EnumHelper.addEnum(EnumParticleTypes.class, name, new Class[] {String.class, int.class, boolean.class, int.class}, name, id, ignoreRange, argumentCount);
     }
 
     public static void registerModParticleTypes() {
